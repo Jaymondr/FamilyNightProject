@@ -13,22 +13,19 @@ protocol HandleMapSearch: AnyObject {
     func dropPinZoomIn(placemark:MKPlacemark)
 }
 class MapViewController: UIViewController {
-    let locationManager = CLLocationManager()
     
     //MARK: - Outlets
-    @IBOutlet weak var parkButton: UIButton!
-    @IBOutlet weak var hikingTrailsButton: UIButton!
-    @IBOutlet weak var movieTheatreButton: UIButton!
     @IBOutlet weak var mapView: MKMapView!
-    
     
     //MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = CustomColors.GrayBlue
         addStyle()
         checkLocationAuthorization()
         centerViewOnUserLocation()
-        setupLocationManager()
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
         checkLocationServices()
         let locationSearchTable = storyboard!.instantiateViewController(withIdentifier: "LocationSearchTable") as! LocationSearchTable
         resultSearchController = UISearchController(searchResultsController: locationSearchTable)
@@ -40,83 +37,20 @@ class MapViewController: UIViewController {
 
         let longPress = UILongPressGestureRecognizer(target: self, action: #selector(MapViewController.mapLongPress(_:)))
         longPress.minimumPressDuration = 1.5 // seconds
-        //add gesture recognition
         mapView.addGestureRecognizer(longPress)
-//        dropPinZoomIn(placemark: MKPlacemark())
-//        self.mapView.mapType = MKMapType.satellite
         
     }
     
     //MARK: - Actions
-    @IBAction func parkButtonTapped(_ sender: Any) {
-        guard let locValue: CLLocationCoordinate2D = locationManager.location?.coordinate else {return}
-        let areaLat = locValue.latitude
-        let areaLon = locValue.longitude
-        let area = "\(areaLat)\(areaLon)"
-        let parkURL = "http://maps.apple.com/?q=parks&s"
-        let finalURL = "\(parkURL)\(area)"
-        
-        if (UIApplication.shared.canOpenURL(URL(string:"http://maps.apple.com")!)) {
-            UIApplication.shared.open(URL(string:
-            "\(finalURL)")!)
-            print(finalURL)
-            
-        } else {
-          NSLog("Can't use Apple Maps");
-        }
-    }
-    @IBAction func theatreButtonTapped(_ sender: Any) {
-        guard let locValue: CLLocationCoordinate2D = locationManager.location?.coordinate else {return}
-        let areaLat = locValue.latitude
-        let areaLon = locValue.longitude
-        let area = "\(areaLat)\(areaLon)"
-        
-        let parkURL = "http://maps.apple.com/?q=movie+theatre&s"
-        if (UIApplication.shared.canOpenURL(URL(string:"http://maps.apple.com")!)) {
-            UIApplication.shared.open(URL(string:
-            "\(parkURL)\(area)")!)
-        } else {
-          NSLog("Can't use Apple Maps");
-        }
-    }
-    @IBAction func hikeButtonTapped(_ sender: Any) {
-        guard let locValue: CLLocationCoordinate2D = locationManager.location?.coordinate else {return}
-        let areaLat = locValue.latitude
-        let areaLon = locValue.longitude
-        let area = "\(areaLat)\(areaLon)"
-        
-        let parkURL = "http://maps.apple.com/?q=hikes&s"
-        if (UIApplication.shared.canOpenURL(URL(string:"http://maps.apple.com")!)) {
-            UIApplication.shared.open(URL(string:
-            "\(parkURL)\(area)")!)
-        } else {
-          NSLog("Can't use Apple Maps");
-        }
-    }
-    
-    @IBAction func exitButton(_ sender: Any) {
-        self.navigationController?.popViewController(animated: true)
-    }
-    
     //MARK: - Properties
     let regionInMeters: Double = 1000
     var resultSearchController: UISearchController? = nil
     var selectedPin: MKPlacemark? = nil
+    let locationManager = CLLocationManager()
+
     
     //MARK: - Functions
-
     func addStyle() {
-//        parkButton.backgroundColor = CustomColors.ParkGreen
-//        movieTheatreButton.backgroundColor = CustomColors.GrayBlue
-//        hikingTrailsButton.backgroundColor = CustomColors.ForestGreen
-//
-//        parkButton.addCornerRadius()
-//        movieTheatreButton.addCornerRadius()
-//        hikingTrailsButton.addCornerRadius()
-//
-//        parkButton.tintColor = .white
-//        movieTheatreButton.tintColor = .white
-//        hikingTrailsButton.tintColor = .white
     }
     
     @objc func mapLongPress(_ recognizer: UIGestureRecognizer) {

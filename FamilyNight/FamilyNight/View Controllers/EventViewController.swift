@@ -26,12 +26,14 @@ class EventViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.reloadData()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         tableView.reloadData()
         setup()
+        
 
     }
     
@@ -44,24 +46,38 @@ class EventViewController: UIViewController {
     var events: [Event] = []
     var event: Event?
     let db = Firestore.firestore()
+    var window: UIWindow?
     
     //MARK: - Functions
     func addColor() {
-        //Background Color
-        view.backgroundColor = CustomColors.Blue
+        assignbackground()
+        
         //Plan Button
-        self.planButton.setTitleColor(CustomColors.Tan, for: .normal)
+        self.planButton.setTitleColor(CustomColors.DarkBlue, for: .normal)
         self.planButton.addCornerRadius()
-        self.planButton.backgroundColor = CustomColors.GrayBlue
+        self.planButton.backgroundColor = CustomColors.Orange
+        self.planButton.layer.borderWidth = 1
+        self.planButton.layer.borderColor = .none
         //Family Title
-        self.familyTimeTitle.textColor = CustomColors.Orange
-        //TableView
-        self.tableView.backgroundColor = CustomColors.Blue
+        self.familyTimeTitle.textColor = CustomColors.GrayBlue
+        self.tableView.backgroundColor = UIColor.clear
         //Subtitle
-        self.subtitle.textColor = CustomColors.Tan
+        self.subtitle.textColor = CustomColors.Gray
         view.tintColor = CustomColors.Blue
         
     }
+    func assignbackground(){
+          let background = UIImage(named: "launchScreenImage")
+
+          var imageView : UIImageView!
+          imageView = UIImageView(frame: view.bounds)
+        imageView.contentMode =  UIView.ContentMode.scaleAspectFill
+          imageView.clipsToBounds = true
+          imageView.image = background
+          imageView.center = view.center
+          view.addSubview(imageView)
+          self.view.sendSubviewToBack(imageView)
+      }
     
     //MARK: - Functions
     func setup() {
@@ -91,11 +107,10 @@ extension EventViewController: UITableViewDataSource, UITableViewDelegate {
         let event = EventController.shared.events[indexPath.row]//else {return UITableViewCell()}
         cell.textLabel?.text = event.title.uppercased()
         cell.detailTextLabel?.text = event.startDate.formatToString()
-        cell.backgroundColor = CustomColors.Tan
+        cell.backgroundColor = UIColor.clear
         cell.textLabel?.textColor = CustomColors.GrayBlue
         cell.detailTextLabel?.textColor = CustomColors.GrayBlue
         cell.addRoundedCorner()
-        
         
         return cell
     }

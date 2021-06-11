@@ -16,7 +16,7 @@ class EventController {
     
     //MARK: - SOURCE OF TRUTH
     var events: [Event] = []
-    
+    var eventDynamicLink: Event?
     //MARK: - REFERENCE TO DATABASE
     let db = Firestore.firestore()
     
@@ -66,10 +66,13 @@ class EventController {
             }
             if let snapshot = snapshot {
                 for doc in snapshot.documents {
+                    
                     let eventData = doc.data()
                     let title = eventData["title"] as? String ?? ""
                     let description = eventData["description"] as? String ?? ""
-                    let startDate = eventData["startDate"] as? Date ?? Date()
+                    let startDate: Date = Timestamp.dateValue(eventData["startDate"] as? Timestamp ?? Timestamp())()
+                    //                    let startDate = eventData["startDate"] as? Date ?? Date()
+                    
                     let location = eventData["location"] as? String ?? ""
                     let id = eventData["id"] as? String ?? ""
                     
@@ -80,4 +83,29 @@ class EventController {
             }
         }
     }
+    
+    func fetchEventWith(id: String, completion: @escaping (Bool) -> Void) {
+        db.collection("events").whereField("id", isEqualTo: id)
+            .getDocuments() { (querySnapshot, error) in
+                if let error = error {
+                    print("error getting docs: \(error)")
+                    return completion(false)
+                }
+                if let snapshot = querySnapshot {
+                    for doc in snapshot.documents {
+                        let eventData = doc.data()
+                        let title = eventData["title"] as? String ?? ""
+                        let description = eventData["description"] as? String ?? ""
+                        let startDate: Date = Timestamp.dateValue(eventData["startDate"] as? Timestamp ?? Timestamp())()
+                        let location = eventData["location"] as? String ?? ""
+                        let id = eventData["id"] as? String ?? ""
+                        
+                        let event = Event(title: title, description: description, startDate: startDate, location: location, id: id)
+                        self.eventDynamicLink = event
+                    }
+                    completion(true)
+                }
+            }
+    }
+    
 }//End of class

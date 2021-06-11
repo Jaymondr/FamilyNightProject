@@ -2,8 +2,9 @@
 //  LocationSearchTable.swift
 //  FamilyNight
 //
-//  Created by Jaymond Richardson on 6/4/21.
+//  Created by Jaymond Richardson on 6/11/21.
 //
+
 
 import UIKit
 import MapKit
