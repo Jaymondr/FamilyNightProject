@@ -4,34 +4,21 @@
 ////
 ////  Created by Jaymond Richardson on 6/11/21.
 ////
-//import UIKit
-//import FirebaseFirestore
-//import MapKit
-//import FirebaseAuth
-//
-//class GoalController {
-//    //MARK: - Shared Instance
-//    static let shared = GoalController()
-//    
-//    //MARK: - SOURCE OF TRUTH
-//    var goal: [Goal] = []
-//    //MARK: - REFERENCE TO DATABASE
-//    let db = Firestore.firestore()
-//    
-//    
-//    //MARK: - CRUD FUNCTIONS
-////    func createGoal(for goal: Goal) {
-////        let goalToAdd: Goal = goal
-////
-////        let goalRef = db.collection("goals").document(goalToAdd)
-////        eventRef.setData(["title" : eventToAdd.title,
-////                          "description" : eventToAdd.description,
-////                          "startDate" : eventToAdd.startDate,
-////                          "location" : eventToAdd.location,
-////                          "id" : eventToAdd.id
-////        ])
-////        events.append(eventToAdd)
-////    }
+import Foundation
+
+class GoalController {
+    //MARK: - Shared Instance
+    static let shared = GoalController()
+    
+    //MARK: - SOURCE OF TRUTH
+    var goal: [Goal] = []
+    
+    
+    //MARK: - CRUD FUNCTIONS
+    func createGoal(for goal: Goal) {
+        let goalToAdd: Goal = goal
+        goa
+    }
 //    
 //    func updateEvent(event: Event) {
 //        let eventRef = db.collection("events").document(event.id)

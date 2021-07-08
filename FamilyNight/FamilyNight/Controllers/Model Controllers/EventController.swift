@@ -22,10 +22,18 @@ class EventController {
     
     
     //MARK: - CRUD FUNCTIONS
-    func createEvent(with title: String, description: String, startDate: Date, location: String) {
-        let newEvent = Event(title: title, description: description, startDate: startDate, location: location)
-        events.append(newEvent)
+    func createEvent(event: Event) {
+        events.append(event)
         saveToPersistenceStore()
+    }
+    
+    func createEventInFirebase(event: Event) {
+        let eventRef = db.collection("events").document(event.id)
+        eventRef.setData(["title" : event.title,
+                         "description" : event.description,
+                         "startDate" : event.startDate,
+                         "location" : event.location])
+        
     }
     
     func updateEvent(event: Event) {
@@ -37,16 +45,12 @@ class EventController {
     }
     
     func delete(event: Event) {
-        db.collection("events").document(event.id).delete()
-        { err in
-            if let err = err {
-                print("Error removing document: \(err)")
-            } else {
-                print("Document successfully removed!")
-            }
+            self.db.collection("events").document(event.id).delete()
+            
             guard let index = self.events.firstIndex(of: event) else {return}
             self.events.remove(at: index)
-        }
+            self.saveToPersistenceStore()
+            print("Document successfully removed!")
     }
     
     func fetchEvents(completion: @escaping (Bool) -> Void) {
@@ -75,7 +79,7 @@ class EventController {
                 completion(true)
             }
         }
-        EventController.shared.loadFromPersistenceStore()
+//        EventController.shared.loadFromPersistenceStore()
     }
     
     func fetchEventWith(id: String, completion: @escaping (Bool) -> Void) {
