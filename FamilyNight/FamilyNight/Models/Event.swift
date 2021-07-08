@@ -32,4 +32,15 @@ extension Event: Equatable {
     static func == (lhs: Event, rhs: Event) -> Bool {
         return lhs.id == rhs.id
     }
+} //End of extension
+
+class Goal {
+    var goal: Int
+    var progress: Float
+    init(goal: Int, progress: Float) {
+    self.goal = goal
+    self.progress = progress
+    }
 }
+
+

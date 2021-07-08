@@ -18,7 +18,7 @@ class JRDropCell: UITableViewCell {
 
     
     func animate() {
-        UIView.animate(withDuration: 0.5, delay: 0.3, usingSpringWithDamping: 0.8, initialSpringVelocity: 1, options: .curveEaseIn, animations: {
+        UIView.animate(withDuration: 0.5, delay: 0.3, usingSpringWithDamping: 0.8, initialSpringVelocity: 1, options: .curveEaseInOut, animations: {
             self.contentView.layoutIfNeeded()
         })
     }

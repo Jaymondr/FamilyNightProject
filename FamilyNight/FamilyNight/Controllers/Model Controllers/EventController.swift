@@ -36,7 +36,7 @@ class EventController {
     }
     
     func updateEvent(event: Event) {
-        let eventRef = db.collection("events").document(event.id)
+        let eventRef = db.collection("events").document(event.id) //create a reference to an event and assign it to eventRef
         eventRef.setData(["title" : event.title,
                           "description" : event.description,
                           "startDate" : event.startDate,
@@ -58,7 +58,7 @@ class EventController {
     
     func fetchEvents(completion: @escaping (Bool) -> Void) {
         db.collection("events").addSnapshotListener { snapshot, error in
-            self.events = [] //no duplicates
+            self.events = [] //setting to an empty array to prevent duplicates
             
             if let error = error {
                 print("Error in \(#function) : \(error.localizedDescription) \n---\n \(error)")

@@ -16,7 +16,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     //MARK: - Application Functions
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
         FirebaseApp.configure()
         return true
     }
@@ -49,7 +48,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
 
         //Parse the link Parameter
-        guard let components = URLComponents(url: url, resolvingAgainstBaseURL: false),
+        guard let components = URLComponents(url: url, resolvingAgainstBaseURL: true),
               let queryItems = components.queryItems else {return}
         
         for queryItem in queryItems {
@@ -67,7 +66,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     
                     case true:
                         newDetailVC.event = EventController.shared.eventDynamicLink
-                        (self.window?.rootViewController as? UINavigationController)?.popToViewController(newDetailVC, animated: true)
+                        (self.window?.rootViewController as? UINavigationController)?.pushViewController(newDetailVC, animated: true)
 
                     case false:
                         print("Unable to find event with id: \(id)")

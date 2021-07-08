@@ -17,12 +17,14 @@ class EventViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var familyTimeTitle: UILabel!
     @IBOutlet weak var subtitle: UILabel!
+    @IBOutlet weak var goalsButton: UITabBarItem!
+    @IBOutlet weak var helpButton: UITabBarItem!
     
     //MARK: - Lifecycles
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        addColor()
+        addStyle()
         tableView.delegate = self
         tableView.dataSource = self
         tableView.reloadData()
@@ -49,9 +51,10 @@ class EventViewController: UIViewController {
     var window: UIWindow?
     
     //MARK: - Functions
-    func addColor() {
+   private func addStyle() {
         assignbackground()
-        
+        goalsButton.badgeColor = .systemYellow
+        helpButton.badgeColor = CustomColors.GrayBlue
         //Plan Button
         self.planButton.setTitleColor(CustomColors.DarkBlue, for: .normal)
         self.planButton.addCornerRadius()
@@ -64,7 +67,7 @@ class EventViewController: UIViewController {
         //Subtitle
         self.subtitle.textColor = CustomColors.Gray
         view.tintColor = CustomColors.Blue
-        
+//    self.navigationController?.tabBarController.sh
     }
     func assignbackground(){
           let background = UIImage(named: "launchScreenImage")

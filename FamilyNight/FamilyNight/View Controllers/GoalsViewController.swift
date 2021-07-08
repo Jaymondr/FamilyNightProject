@@ -40,12 +40,11 @@ class GoalsViewController: UIViewController, UIPickerViewDataSource, UIPickerVie
         pickerData = Array(stride(from: minNum, to: maxNum + 1, by: 1))
     }
     @IBAction func checkinButton(_ sender: Any) {
-                self.buttonWithTimer.isEnabled = false
-                Timer.scheduledTimer(withTimeInterval: 5, repeats: false) {
-                     [weak self]timer in
-                    self?.buttonWithTimer.isEnabled = true
-                }
-            
+        self.buttonWithTimer.isEnabled = false
+        Timer.scheduledTimer(withTimeInterval: 5, repeats: false) {
+             [weak self]timer in
+            self?.buttonWithTimer.isEnabled = true
+        }
         progressPercentage = 1.0 / Double(pickerValue)
         progressBar.progress += Float(progressPercentage)
         if progressBar.progress >= 0.1  && progressBar.progress <= 0.2 {

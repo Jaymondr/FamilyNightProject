@@ -19,18 +19,23 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tabBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cqD-cm-DH8">
+                            <tabBar contentMode="scaleToFill" backgroundImage="launchScreenImageInv" translatesAutoresizingMaskIntoConstraints="NO" id="cqD-cm-DH8">
                                 <rect key="frame" x="0.0" y="812" width="414" height="50"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="b1e-u5-u4O"/>
                                 </constraints>
                                 <items>
-                                    <tabBarItem title="Goals" image="star.fill" catalog="system" id="Gpc-zc-kFC"/>
+                                    <tabBarItem title="Goals" id="Gpc-zc-kFC">
+                                        <imageReference key="image" image="star.fill" catalog="system" symbolScale="large"/>
+                                        <color key="badgeColor" name="jOrange"/>
+                                    </tabBarItem>
                                     <tabBarItem title="Help" id="MT8-Un-x8L">
                                         <imageReference key="image" image="questionmark.circle.fill" catalog="system" symbolScale="large"/>
+                                        <color key="badgeColor" name="lightblue"/>
                                     </tabBarItem>
                                 </items>
+                                <color key="barTintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tabBar>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Family Night" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Fl-E4-1NN">
                                 <rect key="frame" x="8" y="96" width="398" height="80.5"/>
@@ -141,6 +146,8 @@
                     <navigationItem key="navigationItem" title="HOME" id="uTo-7C-vem"/>
                     <connections>
                         <outlet property="familyTimeTitle" destination="9Fl-E4-1NN" id="xiD-5B-b9e"/>
+                        <outlet property="goalsButton" destination="Gpc-zc-kFC" id="8Lt-cM-Rg2"/>
+                        <outlet property="helpButton" destination="MT8-Un-x8L" id="Tc2-bA-6BQ"/>
                         <outlet property="planButton" destination="S3N-VN-S2b" id="y8n-dT-1XB"/>
                         <outlet property="subtitle" destination="dWN-S8-nLc" id="BGP-EQ-DFV"/>
                         <outlet property="tableView" destination="rlo-w5-VHQ" id="bj5-jO-Fxg"/>
@@ -208,9 +215,9 @@
                                 <color key="trackTintColor" systemColor="systemBackgroundColor"/>
                             </progressView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Enn-2N-9Ej">
-                                <rect key="frame" x="35" y="626" width="344" height="126"/>
+                                <rect key="frame" x="35" y="626" width="344" height="134"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <string key="text">Each time you follow through with spending quality time with the people you love, come check in and earn awards! The nice thing about the stars is that you can look at them and feel good! If they make you feel good, keep looking at them! ITS FREE:)</string>
+                                <string key="text">Each time you follow through with spending quality time with the people you love, come check in and earn stars! The nice thing about the stars is that you can look at them and feel good! If they make you feel good, keep looking at them! ITS FREE:)</string>
                                 <color key="textColor" systemColor="labelColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -271,7 +278,7 @@
                             <constraint firstItem="ZH3-Xt-qS7" firstAttribute="top" secondItem="YEZ-gX-GBz" secondAttribute="bottom" constant="24" id="UZb-gK-bK9"/>
                             <constraint firstItem="Dt5-hf-KHc" firstAttribute="centerX" secondItem="Zul-55-g0E" secondAttribute="centerX" id="VPI-Np-E6L"/>
                             <constraint firstItem="zzy-MJ-701" firstAttribute="centerX" secondItem="Zul-55-g0E" secondAttribute="centerX" id="bwh-JK-c8b"/>
-                            <constraint firstItem="Enn-2N-9Ej" firstAttribute="height" secondItem="J3k-nd-Wre" secondAttribute="height" multiplier="0.140625" id="dJj-Yk-KlU"/>
+                            <constraint firstItem="Enn-2N-9Ej" firstAttribute="height" secondItem="J3k-nd-Wre" secondAttribute="height" multiplier="0.15" id="dJj-Yk-KlU"/>
                             <constraint firstItem="twS-QR-Shp" firstAttribute="leading" secondItem="ZH3-Xt-qS7" secondAttribute="trailing" constant="8" id="dr4-nt-iUV"/>
                             <constraint firstItem="ST2-f0-00k" firstAttribute="centerX" secondItem="Zul-55-g0E" secondAttribute="centerX" id="eB3-Yd-HnY"/>
                             <constraint firstItem="Dt5-hf-KHc" firstAttribute="height" secondItem="J3k-nd-Wre" secondAttribute="height" multiplier="0.06" id="eLv-hf-2Xf"/>
@@ -289,7 +296,7 @@
                     <navigationItem key="navigationItem" title="Goals" largeTitleDisplayMode="always" id="cDF-al-8iF"/>
                     <connections>
                         <outlet property="bigStar" destination="ST2-f0-00k" id="QXQ-LG-WVo"/>
-                        <outlet property="buttonWithTimer" destination="YEZ-gX-GBz" id="NyR-62-Sw5"/>
+                        <outlet property="buttonWithTimer" destination="zzy-MJ-701" id="2VY-wg-FOf"/>
                         <outlet property="percentLabel" destination="twS-QR-Shp" id="v5e-mh-g8F"/>
                         <outlet property="progressBar" destination="psv-0E-mmy" id="NpO-Kh-wEY"/>
                         <outlet property="star1" destination="kzS-PY-3zS" id="v5E-oX-ad8"/>
@@ -609,6 +616,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="FdB-B7-jPy" sceneMemberID="viewController">
                     <toolbarItems/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="oyO-Vz-1yA">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -645,6 +653,7 @@
         <segue reference="ayP-aD-YLh"/>
     </inferredMetricsTieBreakers>
     <resources>
+        <image name="launchScreenImageInv" width="1350" height="2400"/>
         <image name="questionmark.circle.fill" catalog="system" width="128" height="121"/>
         <image name="star" catalog="system" width="128" height="116"/>
         <image name="star.fill" catalog="system" width="128" height="116"/>
@@ -653,6 +662,12 @@
         </namedColor>
         <namedColor name="jGrayBlue">
             <color red="0.14901960784313725" green="0.19607843137254902" blue="0.22352941176470589" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="jOrange">
+            <color red="0.92549019607843142" green="0.61176470588235299" blue="0.14509803921568629" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="lightblue">
+            <color red="0.77254901960784317" green="0.90196078431372551" blue="0.8901960784313725" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
