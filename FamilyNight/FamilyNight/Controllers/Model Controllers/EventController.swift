@@ -22,17 +22,10 @@ class EventController {
     
     
     //MARK: - CRUD FUNCTIONS
-    func createEvent(for event: Event) {
-        let eventToAdd: Event = event
-        
-        let eventRef = db.collection("events").document(eventToAdd.id)
-        eventRef.setData(["title" : eventToAdd.title,
-                          "description" : eventToAdd.description,
-                          "startDate" : eventToAdd.startDate,
-                          "location" : eventToAdd.location,
-                          "id" : eventToAdd.id
-        ])
-        events.append(eventToAdd)
+    func createEvent(with title: String, description: String, startDate: Date, location: String) {
+        let newEvent = Event(title: title, description: description, startDate: startDate, location: location)
+        events.append(newEvent)
+        saveToPersistenceStore()
     }
     
     func updateEvent(event: Event) {
@@ -82,6 +75,7 @@ class EventController {
                 completion(true)
             }
         }
+        EventController.shared.loadFromPersistenceStore()
     }
     
     func fetchEventWith(id: String, completion: @escaping (Bool) -> Void) {
@@ -106,6 +100,35 @@ class EventController {
                     completion(true)
                 }
             }
+        EventController.shared.loadFromPersistenceStore()
     }
-    
+    func createPersistenceStore() -> URL {
+        let url = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        let fileURL = url[0].appendingPathComponent("FamilyNight.json")
+        return fileURL
+    }
+
+    func saveToPersistenceStore() {
+        do {
+            let data = try JSONEncoder().encode(events)
+            try data.write(to: createPersistenceStore())
+        } catch {
+            print("Error in \(#function) : \(error.localizedDescription) \n---\n \(error)")
+            
+        }
+    }
+
+    func loadFromPersistenceStore () {
+        do {
+            let data = try Data(contentsOf: createPersistenceStore())
+            let events = try JSONDecoder().decode([Event].self, from: data)
+            self.events = events
+        } catch {
+            print("======== ERROR ========")
+            print("Function: \(#function)")
+            print("Error: \(error)")
+            print("Description: \(error.localizedDescription)")
+            print("======== ERROR ========")
+        }
+    }
 }//End of class

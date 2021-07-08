@@ -99,8 +99,9 @@ class PlannerViewController: UIViewController, UITextViewDelegate {
             
             EventController.shared.updateEvent(event: event)
         } else {
-            let newEvent = Event(title: title, description: description, startDate: startDate, location: location)
-            EventController.shared.createEvent(for: newEvent)
+//            let newEvent = Event(title: title, description: description, startDate: startDate, location: location)
+            EventController.shared.createEvent(with: title, description: description, startDate: startDate, location: location)
+            
         }
         
         navigationController?.popViewController(animated: true)
