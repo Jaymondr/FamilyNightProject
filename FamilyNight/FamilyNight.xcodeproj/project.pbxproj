@@ -297,7 +297,6 @@
 			isa = PBXGroup;
 			children = (
 				67891154267007A1000C9077 /* FamilyNight.entitlements */,
-				678E28D22646DC5C005F6F49 /* View Controllers */,
 				6780CE672656020000F6104B /* Styles */,
 				678E28D12646DC57005F6F49 /* Models */,
 				678E28D02646DC53005F6F49 /* Controllers */,
@@ -342,6 +341,7 @@
 		678E28D02646DC53005F6F49 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				678E28D22646DC5C005F6F49 /* View Controllers */,
 				678E28D32646DC65005F6F49 /* Model Controllers */,
 			);
 			path = Controllers;

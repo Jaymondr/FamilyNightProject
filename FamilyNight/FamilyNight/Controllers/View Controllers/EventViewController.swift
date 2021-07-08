@@ -23,7 +23,11 @@ class EventViewController: UIViewController {
     //MARK: - Lifecycles
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        navigationController?.setNavigationBarHidden(false, animated: true)
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        navigationController?.navigationBar.shadowImage = UIImage()
+        navigationController?.navigationBar.isTranslucent = true
+
         addStyle()
         tableView.delegate = self
         tableView.dataSource = self
