@@ -97,7 +97,8 @@ class PlannerViewController: UIViewController, UITextViewDelegate {
             event.startDate = startDate
             event.location = location
             
-            EventController.shared.updateEvent(event: event)
+            EventController.shared.updateEventInFirebase(event: event)
+            EventController.shared.updateEvent(event: event, title: title, description: description, startDate: startDate, location: location)
         } else {
             let newEvent = Event(title: title, description: description, startDate: startDate, location: location)
             EventController.shared.createEventInFirebase(event: newEvent)

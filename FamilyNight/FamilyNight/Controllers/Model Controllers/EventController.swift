@@ -36,12 +36,20 @@ class EventController {
         
     }
     
-    func updateEvent(event: Event) {
+    func updateEventInFirebase(event: Event) {
         let eventRef = db.collection("events").document(event.id) //create a reference to an event and assign it to eventRef
         eventRef.setData(["title" : event.title,
                           "description" : event.description,
                           "startDate" : event.startDate,
                           "location" : event.location], merge: true)
+    }
+    
+    func updateEvent(event: Event, title: String, description: String, startDate: Date, location: String) {
+        event.title = title
+        event.description = description
+        event.startDate = startDate
+        event.location = location
+        saveToPersistenceStore()
     }
     
     func delete(event: Event) {

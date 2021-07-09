@@ -143,7 +143,7 @@
                             <constraint firstItem="cqD-cm-DH8" firstAttribute="trailing" secondItem="grL-wo-ivC" secondAttribute="trailing" id="zN7-hs-34N"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="HOME" id="uTo-7C-vem"/>
+                    <navigationItem key="navigationItem" id="uTo-7C-vem"/>
                     <connections>
                         <outlet property="familyTimeTitle" destination="9Fl-E4-1NN" id="xiD-5B-b9e"/>
                         <outlet property="goalsButton" destination="Gpc-zc-kFC" id="8Lt-cM-Rg2"/>
