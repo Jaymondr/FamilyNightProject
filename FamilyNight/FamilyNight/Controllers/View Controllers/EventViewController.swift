@@ -23,20 +23,23 @@ class EventViewController: UIViewController {
     //MARK: - Lifecycles
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        navigationController?.setNavigationBarHidden(false, animated: true)
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        navigationController?.navigationBar.shadowImage = UIImage()
+        navigationController?.navigationBar.isTranslucent = true
+
         addStyle()
         tableView.delegate = self
         tableView.dataSource = self
         tableView.reloadData()
-        
+        EventController.shared.loadFromPersistenceStore()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        EventController.shared.loadFromPersistenceStore()
         tableView.reloadData()
         setup()
-        
-
     }
     
     //MARK: - Actions
@@ -45,7 +48,7 @@ class EventViewController: UIViewController {
     }
     
     //MARK: - Properties
-    var events: [Event] = []
+    var events = EventController.shared.events
     var event: Event?
     let db = Firestore.firestore()
     var window: UIWindow?
@@ -85,15 +88,18 @@ class EventViewController: UIViewController {
     //MARK: - Functions
     func setup() {
         DispatchQueue.main.async {
-            EventController.shared.fetchEvents { success in
-                if success {
-                    print("Event Count: \(EventController.shared.events.count)")
-                    self.events = EventController.shared.events
-                    self.tableView.reloadData()
-                } else {
-                    print("Houston we have a problem!")
-                }
-            }
+            EventController.shared.loadFromPersistenceStore()
+            self.events = EventController.shared.events
+            self.tableView.reloadData()
+//            EventController.shared.fetchEvents { success in
+//                if success {
+//                    print("Event Count: \(EventController.shared.events.count)")
+//                    self.events = EventController.shared.events
+//                    self.tableView.reloadData()
+//                } else {
+//                    print("Houston we have a problem!")
+//                }
+//            }
         }
     }
 }//End of class
@@ -101,7 +107,7 @@ class EventViewController: UIViewController {
 //MARK: - Extensions
 extension EventViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return events.count
+        return EventController.shared.events.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -136,9 +142,11 @@ extension EventViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
         let eventToDelete = EventController.shared.events[indexPath.row]
         EventController.shared.delete(event: eventToDelete)
-        tableView.reloadData()
+        tableView.deleteRows(at: [indexPath], with: .fade)
+        }
     }
   
 }//End of extension

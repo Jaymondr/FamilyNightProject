@@ -36,8 +36,8 @@ extension Event: Equatable {
 
 class Goal {
     var goal: Int
-    var progress: Float
-    init(goal: Int, progress: Float) {
+    var progress: Double
+    init(goal: Int, progress: Double) {
     self.goal = goal
     self.progress = progress
     }

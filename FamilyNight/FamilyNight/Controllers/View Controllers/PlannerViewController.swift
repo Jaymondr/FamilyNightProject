@@ -100,7 +100,9 @@ class PlannerViewController: UIViewController, UITextViewDelegate {
             EventController.shared.updateEvent(event: event)
         } else {
             let newEvent = Event(title: title, description: description, startDate: startDate, location: location)
-            EventController.shared.createEvent(for: newEvent)
+            EventController.shared.createEventInFirebase(event: newEvent)
+            EventController.shared.createEvent(event: newEvent)
+            
         }
         
         navigationController?.popViewController(animated: true)

@@ -31,6 +31,7 @@
 		67C1C98C26669A62007F5C97 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67C1C98B26669A62007F5C97 /* MapViewController.swift */; };
 		67C1C98F2666C53D007F5C97 /* ContactTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67C1C98E2666C53D007F5C97 /* ContactTableViewController.swift */; };
 		67C1C99726681B68007F5C97 /* EventController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67C1C99626681B68007F5C97 /* EventController.swift */; };
+		67EF6DD8269774020093FFD6 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67EF6DD7269774020093FFD6 /* Persistence.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -186,6 +187,7 @@
 		67C1C98B26669A62007F5C97 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		67C1C98E2666C53D007F5C97 /* ContactTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactTableViewController.swift; sourceTree = "<group>"; };
 		67C1C99626681B68007F5C97 /* EventController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventController.swift; sourceTree = "<group>"; };
+		67EF6DD7269774020093FFD6 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -297,12 +299,10 @@
 			isa = PBXGroup;
 			children = (
 				67891154267007A1000C9077 /* FamilyNight.entitlements */,
-				678E28D22646DC5C005F6F49 /* View Controllers */,
-				6780CE672656020000F6104B /* Styles */,
 				678E28D12646DC57005F6F49 /* Models */,
+				678E28CF2646DC4D005F6F49 /* Views */,
 				678E28D02646DC53005F6F49 /* Controllers */,
 				6789114E266EF5F5000C9077 /* EventCalendar */,
-				678E28CF2646DC4D005F6F49 /* Views */,
 				678E28CE2646DC3F005F6F49 /* Helper and Extension */,
 				678E28CD2646DC37005F6F49 /* Resources */,
 			);
@@ -324,8 +324,10 @@
 		678E28CE2646DC3F005F6F49 /* Helper and Extension */ = {
 			isa = PBXGroup;
 			children = (
+				6780CE672656020000F6104B /* Styles */,
 				67891141266E8C6A000C9077 /* DateFormatter.swift */,
 				67891152266FE784000C9077 /* EventIdeas.swift */,
+				67EF6DD7269774020093FFD6 /* Persistence.swift */,
 			);
 			path = "Helper and Extension";
 			sourceTree = "<group>";
@@ -342,6 +344,7 @@
 		678E28D02646DC53005F6F49 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				678E28D22646DC5C005F6F49 /* View Controllers */,
 				678E28D32646DC65005F6F49 /* Model Controllers */,
 			);
 			path = Controllers;
@@ -648,6 +651,7 @@
 				67891153266FE784000C9077 /* EventIdeas.swift in Sources */,
 				67848F27265EB67900F0DCCE /* GoalsViewController.swift in Sources */,
 				67C1C98F2666C53D007F5C97 /* ContactTableViewController.swift in Sources */,
+				67EF6DD8269774020093FFD6 /* Persistence.swift in Sources */,
 				676E92182672811B00235FDF /* JRDropCell.swift in Sources */,
 				67891142266E8C6B000C9077 /* DateFormatter.swift in Sources */,
 				67848F1F265D99D600F0DCCE /* CustomColors.swift in Sources */,

@@ -22,17 +22,18 @@ class EventController {
     
     
     //MARK: - CRUD FUNCTIONS
-    func createEvent(for event: Event) {
-        let eventToAdd: Event = event
+    func createEvent(event: Event) {
+        events.append(event)
+        saveToPersistenceStore()
+    }
+    
+    func createEventInFirebase(event: Event) {
+        let eventRef = db.collection("events").document(event.id)
+        eventRef.setData(["title" : event.title,
+                         "description" : event.description,
+                         "startDate" : event.startDate,
+                         "location" : event.location])
         
-        let eventRef = db.collection("events").document(eventToAdd.id)
-        eventRef.setData(["title" : eventToAdd.title,
-                          "description" : eventToAdd.description,
-                          "startDate" : eventToAdd.startDate,
-                          "location" : eventToAdd.location,
-                          "id" : eventToAdd.id
-        ])
-        events.append(eventToAdd)
     }
     
     func updateEvent(event: Event) {
@@ -44,16 +45,12 @@ class EventController {
     }
     
     func delete(event: Event) {
-        db.collection("events").document(event.id).delete()
-        { err in
-            if let err = err {
-                print("Error removing document: \(err)")
-            } else {
-                print("Document successfully removed!")
-            }
+            self.db.collection("events").document(event.id).delete()
+            
             guard let index = self.events.firstIndex(of: event) else {return}
             self.events.remove(at: index)
-        }
+            self.saveToPersistenceStore()
+            print("Document successfully removed!")
     }
     
     func fetchEvents(completion: @escaping (Bool) -> Void) {
@@ -82,6 +79,7 @@ class EventController {
                 completion(true)
             }
         }
+//        EventController.shared.loadFromPersistenceStore()
     }
     
     func fetchEventWith(id: String, completion: @escaping (Bool) -> Void) {
@@ -106,6 +104,35 @@ class EventController {
                     completion(true)
                 }
             }
+        EventController.shared.loadFromPersistenceStore()
     }
-    
+    func createPersistenceStore() -> URL {
+        let url = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        let fileURL = url[0].appendingPathComponent("FamilyNight.json")
+        return fileURL
+    }
+
+    func saveToPersistenceStore() {
+        do {
+            let data = try JSONEncoder().encode(events)
+            try data.write(to: createPersistenceStore())
+        } catch {
+            print("Error in \(#function) : \(error.localizedDescription) \n---\n \(error)")
+            
+        }
+    }
+
+    func loadFromPersistenceStore () {
+        do {
+            let data = try Data(contentsOf: createPersistenceStore())
+            let events = try JSONDecoder().decode([Event].self, from: data)
+            self.events = events
+        } catch {
+            print("======== ERROR ========")
+            print("Function: \(#function)")
+            print("Error: \(error)")
+            print("Description: \(error.localizedDescription)")
+            print("======== ERROR ========")
+        }
+    }
 }//End of class
