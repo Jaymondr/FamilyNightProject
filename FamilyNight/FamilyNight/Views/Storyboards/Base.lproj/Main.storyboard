@@ -293,7 +293,14 @@
                             <constraint firstItem="twS-QR-Shp" firstAttribute="width" secondItem="ZH3-Xt-qS7" secondAttribute="width" multiplier="0.166008" id="zFX-U9-Qdx"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Goals" largeTitleDisplayMode="always" id="cDF-al-8iF"/>
+                    <navigationItem key="navigationItem" title="Goals" largeTitleDisplayMode="always" id="cDF-al-8iF">
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="2fI-08-2r5">
+                            <color key="tintColor" red="0.085544772446155548" green="0.71700531244277954" blue="0.42357799410820007" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <action selector="saveButtonTapped:" destination="yez-hp-zvK" id="mF9-ve-6w9"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="bigStar" destination="ST2-f0-00k" id="QXQ-LG-WVo"/>
                         <outlet property="buttonWithTimer" destination="zzy-MJ-701" id="2VY-wg-FOf"/>

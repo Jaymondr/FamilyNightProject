@@ -25,10 +25,24 @@ class GoalsViewController: UIViewController, UIPickerViewDataSource, UIPickerVie
     override func viewDidLoad() {
         super.viewDidLoad()
         pickerView = UIPickerView(frame: CGRect(x: 10, y: 50, width: 250, height: 150))
+        setup()    }
+    
+    //MARK: - Actions
+    func setup() {
+    guard let goal = GoalController.shared.goal?.goal,
+          let progress = GoalController.shared.goal?.progress else {return}
+        progressPercentage = progress
+        pickerValue = goal
         
     }
-        
-    //MARK: - Actions
+    @IBAction func saveButtonTapped(_ sender: Any) {
+        guard let goal = pickerValue else { return }
+        let progess = progressPercentage
+        GoalController.shared.createGoal(goal: goal, progress: progess)
+        print("\(goal)\(progess)")
+    }
+    
+    
     @IBAction func setGoalButtonTapped(_ sender: Any) {
         showAlert()
         pickerView.delegate = self
@@ -38,6 +52,8 @@ class GoalsViewController: UIViewController, UIPickerViewDataSource, UIPickerVie
         let maxNum = 7
         
         pickerData = Array(stride(from: minNum, to: maxNum + 1, by: 1))
+        
+        GoalController.shared.createGoal(goal: pickerValue ?? 0, progress: progressPercentage)
     }
     @IBAction func checkinButton(_ sender: Any) {
         self.buttonWithTimer.isEnabled = false
@@ -45,7 +61,7 @@ class GoalsViewController: UIViewController, UIPickerViewDataSource, UIPickerVie
              [weak self]timer in
             self?.buttonWithTimer.isEnabled = true
         }
-        progressPercentage = 1.0 / Double(pickerValue)
+        progressPercentage = 1.0 / Double(pickerValue ?? 0)
         progressBar.progress += Float(progressPercentage)
         if progressBar.progress >= 0.1  && progressBar.progress <= 0.2 {
             percentLabel.text = "20%"
@@ -121,10 +137,11 @@ class GoalsViewController: UIViewController, UIPickerViewDataSource, UIPickerVie
     }
     
     //MARK: - Properties
-    var pickerValue = 0
-    var starCount = 0
-    var pickedGoal = 5.00
+    var pickerValue: Int?
+    var starCount: Int = 0
     var progressPercentage: Double = 0.0
+    var goal: [Goal] = []
+
 
 
     
@@ -143,6 +160,8 @@ class GoalsViewController: UIViewController, UIPickerViewDataSource, UIPickerVie
         ac.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
             self.pickerValue = self.pickerData[self.pickerView.selectedRow(inComponent: 0)]
             print("Picker value: \(self.pickerValue) was selected")
+            GoalController.shared.createGoal(goal: self.pickerValue ?? 0, progress: self.progressPercentage)
+
         }))
         ac.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         present(ac, animated: true)
