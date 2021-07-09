@@ -371,7 +371,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="LTq-J1-8uu">
-                                <rect key="frame" x="10.5" y="104" width="393" height="209.5"/>
+                                <rect key="frame" x="10.5" y="104" width="393" height="448"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="(TITLE)" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FfN-Y1-QDd">
                                         <rect key="frame" x="0.0" y="0.0" width="393" height="50"/>
@@ -382,21 +382,18 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="32"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Insert a brief desctiption/ summary of your event here!..." textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="e1U-AW-yQA">
-                                        <rect key="frame" x="0.0" y="66" width="393" height="143.5"/>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Insert a desctiption/ summary of your event here!..." textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="e1U-AW-yQA">
+                                        <rect key="frame" x="0.0" y="66" width="393" height="382"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <color key="tintColor" name="jGrayBlue"/>
                                         <color key="textColor" systemColor="labelColor"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="16"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
                                 </subviews>
                             </stackView>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="9Wg-KS-akF">
-                                <rect key="frame" x="10.5" y="508" width="393" height="314"/>
-                            </mapView>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Paste Address Here..." textAlignment="natural" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="9NR-Qr-TrR">
-                                <rect key="frame" x="10.5" y="452" width="393" height="40"/>
+                                <rect key="frame" x="8" y="689" width="398" height="40"/>
                                 <color key="tintColor" name="jGrayBlue"/>
                                 <accessibility key="accessibilityConfiguration">
                                     <accessibilityTraits key="traits" link="YES"/>
@@ -407,59 +404,15 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES" textContentType="street-address"/>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ABe-6M-RB9">
-                                <rect key="frame" x="10.5" y="423.5" width="82.5" height="20.5"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="20.5" id="9hq-pa-8vz"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EvG-dt-Izh">
-                                <rect key="frame" x="103.5" y="830" width="207" height="58"/>
+                                <rect key="frame" x="103.5" y="814" width="207" height="58"/>
                                 <state key="normal" title="Create and Send"/>
                                 <connections>
                                     <action selector="createButtonTapped:" destination="SEf-W7-KNe" eventType="touchUpInside" id="3od-BZ-ntH"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LXs-Jh-khh">
-                                <rect key="frame" x="10.5" y="508" width="393" height="314"/>
-                                <connections>
-                                    <segue destination="gMd-q2-5ex" kind="presentation" identifier="toMapView" id="oAW-eV-7Tl"/>
-                                </connections>
-                            </button>
-                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="1aP-Y0-H0K">
-                                <rect key="frame" x="107" y="418" width="295" height="31.5"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pem-xh-tS0">
-                                        <rect key="frame" x="0.0" y="0.0" width="93" height="31.5"/>
-                                        <state key="normal" title="park"/>
-                                        <connections>
-                                            <action selector="parkButtonTapped:" destination="SEf-W7-KNe" eventType="touchUpInside" id="Ed5-xz-K10"/>
-                                            <action selector="parkButtonTapped:" destination="gMd-q2-5ex" eventType="touchUpInside" id="yO0-ki-XDZ"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZNZ-zo-gY8">
-                                        <rect key="frame" x="101" y="0.0" width="93" height="31.5"/>
-                                        <state key="normal" title="Theatres"/>
-                                        <connections>
-                                            <action selector="movieTheatreButtonTapped:" destination="SEf-W7-KNe" eventType="touchUpInside" id="Z6Q-7o-zLn"/>
-                                            <action selector="theatreButtonTapped:" destination="gMd-q2-5ex" eventType="touchUpInside" id="pyG-V3-LwR"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IO1-Vt-mlI">
-                                        <rect key="frame" x="202" y="0.0" width="93" height="31.5"/>
-                                        <state key="normal" title="hikes"/>
-                                        <connections>
-                                            <action selector="hikeButtonTapped:" destination="gMd-q2-5ex" eventType="touchUpInside" id="o1K-7p-OPA"/>
-                                            <action selector="hikesButtonTapped:" destination="SEf-W7-KNe" eventType="touchUpInside" id="lBO-4A-hI8"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                            </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="gfo-y7-KL3">
-                                <rect key="frame" x="67" y="321.5" width="280" height="75"/>
+                                <rect key="frame" x="67" y="560" width="280" height="75"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="sYd-Ix-ZgA">
                                         <rect key="frame" x="0.0" y="0.0" width="280" height="36"/>
@@ -469,7 +422,7 @@
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="50" id="dfx-ZU-NZT"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
+                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
                                                 <color key="textColor" name="jGrayBlue"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -483,7 +436,7 @@
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="END" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yCj-jl-irf">
                                                 <rect key="frame" x="0.0" y="0.0" width="50" height="36"/>
-                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
+                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
                                                 <color key="textColor" name="jGrayBlue"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -499,38 +452,70 @@
                                     <constraint firstAttribute="height" constant="75" id="Gib-76-6hE"/>
                                 </constraints>
                             </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="14" translatesAutoresizingMaskIntoConstraints="NO" id="QIq-ff-U8S">
+                                <rect key="frame" x="8" y="651" width="398" height="30"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ABe-6M-RB9">
+                                        <rect key="frame" x="0.0" y="0.0" width="70" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="1aP-Y0-H0K">
+                                        <rect key="frame" x="84" y="0.0" width="314" height="30"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pem-xh-tS0">
+                                                <rect key="frame" x="0.0" y="0.0" width="99.5" height="30"/>
+                                                <state key="normal" title="Parks"/>
+                                                <connections>
+                                                    <action selector="parkButtonTapped:" destination="SEf-W7-KNe" eventType="touchUpInside" id="Ed5-xz-K10"/>
+                                                    <action selector="parkButtonTapped:" destination="gMd-q2-5ex" eventType="touchUpInside" id="yO0-ki-XDZ"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZNZ-zo-gY8">
+                                                <rect key="frame" x="107.5" y="0.0" width="99" height="30"/>
+                                                <state key="normal" title="Theatres"/>
+                                                <connections>
+                                                    <action selector="movieTheatreButtonTapped:" destination="SEf-W7-KNe" eventType="touchUpInside" id="Z6Q-7o-zLn"/>
+                                                    <action selector="theatreButtonTapped:" destination="gMd-q2-5ex" eventType="touchUpInside" id="pyG-V3-LwR"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IO1-Vt-mlI">
+                                                <rect key="frame" x="214.5" y="0.0" width="99.5" height="30"/>
+                                                <state key="normal" title="Hikes"/>
+                                                <connections>
+                                                    <action selector="hikeButtonTapped:" destination="gMd-q2-5ex" eventType="touchUpInside" id="o1K-7p-OPA"/>
+                                                    <action selector="hikesButtonTapped:" destination="SEf-W7-KNe" eventType="touchUpInside" id="lBO-4A-hI8"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="tap-cA-U7m"/>
+                                </constraints>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="j1O-yW-Ae0"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="EvG-dt-Izh" secondAttribute="bottom" constant="8" id="0kW-gd-DHH"/>
-                            <constraint firstItem="1aP-Y0-H0K" firstAttribute="height" secondItem="7sr-Ky-c6b" secondAttribute="height" multiplier="0.035" id="2wd-cQ-WjZ"/>
+                            <constraint firstAttribute="bottom" secondItem="EvG-dt-Izh" secondAttribute="bottom" constant="24" id="0kW-gd-DHH"/>
                             <constraint firstItem="LTq-J1-8uu" firstAttribute="width" secondItem="7sr-Ky-c6b" secondAttribute="width" multiplier="0.95" id="3hg-jG-ReX"/>
                             <constraint firstItem="gfo-y7-KL3" firstAttribute="centerX" secondItem="j1O-yW-Ae0" secondAttribute="centerX" id="4iW-wi-xDE"/>
-                            <constraint firstItem="9Wg-KS-akF" firstAttribute="top" secondItem="9NR-Qr-TrR" secondAttribute="bottom" constant="16" id="6M9-jE-QLN"/>
-                            <constraint firstItem="LXs-Jh-khh" firstAttribute="height" secondItem="9Wg-KS-akF" secondAttribute="height" id="894-fK-6f3"/>
-                            <constraint firstItem="LXs-Jh-khh" firstAttribute="centerY" secondItem="9Wg-KS-akF" secondAttribute="centerY" id="Bv3-V6-OKw"/>
-                            <constraint firstItem="ABe-6M-RB9" firstAttribute="width" secondItem="7sr-Ky-c6b" secondAttribute="width" multiplier="0.2" id="C3b-fu-ial"/>
                             <constraint firstItem="EvG-dt-Izh" firstAttribute="centerX" secondItem="j1O-yW-Ae0" secondAttribute="centerX" id="DOG-nh-PJp"/>
-                            <constraint firstItem="LXs-Jh-khh" firstAttribute="width" secondItem="9Wg-KS-akF" secondAttribute="width" id="J7l-TI-JPI"/>
                             <constraint firstItem="EvG-dt-Izh" firstAttribute="height" secondItem="7sr-Ky-c6b" secondAttribute="height" multiplier="0.0647321" id="JtQ-KP-fAO"/>
-                            <constraint firstItem="EvG-dt-Izh" firstAttribute="top" secondItem="9Wg-KS-akF" secondAttribute="bottom" constant="8" id="T53-y7-2pO"/>
-                            <constraint firstItem="9Wg-KS-akF" firstAttribute="centerX" secondItem="j1O-yW-Ae0" secondAttribute="centerX" id="VPC-Cn-glp"/>
-                            <constraint firstItem="9Wg-KS-akF" firstAttribute="width" secondItem="7sr-Ky-c6b" secondAttribute="width" multiplier="0.95" id="XZU-1o-hj3"/>
-                            <constraint firstItem="9NR-Qr-TrR" firstAttribute="width" secondItem="9Wg-KS-akF" secondAttribute="width" id="XoY-18-c4E"/>
-                            <constraint firstItem="9Wg-KS-akF" firstAttribute="centerY" secondItem="j1O-yW-Ae0" secondAttribute="centerY" multiplier="1.4" id="bio-5g-MfR"/>
-                            <constraint firstItem="9NR-Qr-TrR" firstAttribute="top" secondItem="ABe-6M-RB9" secondAttribute="bottom" constant="8" symbolic="YES" id="cI9-SY-0VB"/>
-                            <constraint firstItem="LTq-J1-8uu" firstAttribute="height" secondItem="7sr-Ky-c6b" secondAttribute="height" multiplier="0.233817" id="dNp-si-1dU"/>
-                            <constraint firstItem="1aP-Y0-H0K" firstAttribute="width" secondItem="7sr-Ky-c6b" secondAttribute="width" multiplier="0.71256" id="eAv-Z1-7RO"/>
+                            <constraint firstItem="9NR-Qr-TrR" firstAttribute="leading" secondItem="j1O-yW-Ae0" secondAttribute="leading" constant="8" id="YOF-cu-9yL"/>
+                            <constraint firstItem="9NR-Qr-TrR" firstAttribute="top" secondItem="QIq-ff-U8S" secondAttribute="bottom" constant="8" id="Ya2-8q-PBP"/>
+                            <constraint firstItem="QIq-ff-U8S" firstAttribute="centerX" secondItem="j1O-yW-Ae0" secondAttribute="centerX" id="a6l-cb-GQI"/>
+                            <constraint firstItem="QIq-ff-U8S" firstAttribute="leading" secondItem="j1O-yW-Ae0" secondAttribute="leading" constant="8" id="c3r-9J-Pps"/>
+                            <constraint firstItem="LTq-J1-8uu" firstAttribute="height" secondItem="7sr-Ky-c6b" secondAttribute="height" multiplier="0.5" id="dNp-si-1dU"/>
                             <constraint firstItem="LTq-J1-8uu" firstAttribute="top" secondItem="j1O-yW-Ae0" secondAttribute="top" constant="16" id="fbb-uh-rBp"/>
-                            <constraint firstItem="1aP-Y0-H0K" firstAttribute="centerX" secondItem="j1O-yW-Ae0" secondAttribute="centerX" multiplier="1.23" id="grM-71-x2b"/>
-                            <constraint firstItem="9NR-Qr-TrR" firstAttribute="centerX" secondItem="9Wg-KS-akF" secondAttribute="centerX" id="lHT-SB-lqX"/>
+                            <constraint firstItem="j1O-yW-Ae0" firstAttribute="trailing" secondItem="9NR-Qr-TrR" secondAttribute="trailing" constant="8" id="l6m-9n-zCG"/>
                             <constraint firstItem="EvG-dt-Izh" firstAttribute="width" secondItem="7sr-Ky-c6b" secondAttribute="width" multiplier="0.5" id="lrq-hI-N44"/>
-                            <constraint firstItem="ABe-6M-RB9" firstAttribute="leading" secondItem="9NR-Qr-TrR" secondAttribute="leading" id="ltc-A7-KN8"/>
                             <constraint firstItem="gfo-y7-KL3" firstAttribute="top" secondItem="LTq-J1-8uu" secondAttribute="bottom" constant="8" id="np2-Mj-Oul"/>
-                            <constraint firstItem="1aP-Y0-H0K" firstAttribute="centerY" secondItem="ABe-6M-RB9" secondAttribute="centerY" id="pKC-tN-XKy"/>
+                            <constraint firstItem="j1O-yW-Ae0" firstAttribute="trailing" secondItem="QIq-ff-U8S" secondAttribute="trailing" constant="8" id="qOD-hU-LFy"/>
                             <constraint firstItem="LTq-J1-8uu" firstAttribute="centerX" secondItem="j1O-yW-Ae0" secondAttribute="centerX" id="r2c-CY-yRR"/>
-                            <constraint firstItem="LXs-Jh-khh" firstAttribute="centerX" secondItem="9Wg-KS-akF" secondAttribute="centerX" id="yfB-3Y-ROQ"/>
+                            <constraint firstItem="QIq-ff-U8S" firstAttribute="top" secondItem="gfo-y7-KL3" secondAttribute="bottom" constant="16" id="uhX-sn-YNI"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="eu9-wq-eXQ">
@@ -547,7 +532,6 @@
                         <outlet property="endDatePicker" destination="F0E-bl-VOW" id="8PN-jy-1mc"/>
                         <outlet property="hikesButton" destination="IO1-Vt-mlI" id="Hwh-4R-7yW"/>
                         <outlet property="locationTextField" destination="9NR-Qr-TrR" id="9Fs-TU-qE6"/>
-                        <outlet property="mapView" destination="9Wg-KS-akF" id="xE0-gZ-LkO"/>
                         <outlet property="movieTheatreButton" destination="ZNZ-zo-gY8" id="RSY-n0-pee"/>
                         <outlet property="parkButton" destination="Pem-xh-tS0" id="uWY-e1-x7N"/>
                         <outlet property="startDatePicker" destination="G6T-vd-SHc" id="gfB-OM-Pky"/>
@@ -591,11 +575,11 @@
             <objects>
                 <viewController title="Map View" id="gMd-q2-5ex" customClass="MapViewController" customModule="FamilyNight" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="xQy-is-7e1">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="2SB-qW-QbE">
-                                <rect key="frame" x="0.0" y="32" width="414" height="810"/>
+                                <rect key="frame" x="0.0" y="76" width="414" height="820"/>
                                 <connections>
                                     <outlet property="delegate" destination="gMd-q2-5ex" id="GmY-11-0tI"/>
                                 </connections>

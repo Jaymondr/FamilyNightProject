@@ -188,9 +188,9 @@ class PlannerViewController: UIViewController, UITextViewDelegate {
     
     //MARK: - Location Functions
     func checkLocationAuthorization() {
-        switch  CLLocationManager.authorizationStatus() {
+        switch  CLLocationManager().authorizationStatus {
         case .authorizedWhenInUse:
-            mapView.showsUserLocation = true
+//            mapView.showsUserLocation = true
             centerViewOnUserLocation()
             locationManager.startUpdatingLocation()
             break
@@ -208,10 +208,10 @@ class PlannerViewController: UIViewController, UITextViewDelegate {
     }
     
     func centerViewOnUserLocation() {
-        if let location = locationManager.location?.coordinate {
-            let region = MKCoordinateRegion.init(center: location, latitudinalMeters: regionInMeters, longitudinalMeters: regionInMeters)
-            mapView.setRegion(region, animated: true)
-        }
+//        if let location = locationManager.location?.coordinate {
+//            let region = MKCoordinateRegion.init(center: location, latitudinalMeters: regionInMeters, longitudinalMeters: regionInMeters)
+//            mapView.setRegion(region, animated: true)
+//        }
     }
     
     func setupLocationManager() {
@@ -303,10 +303,10 @@ extension PlannerViewController : CLLocationManagerDelegate {
     }
     
     private func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        guard let location = locations.last else {return}
-        let center = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
-        let region = MKCoordinateRegion.init(center: center, latitudinalMeters: regionInMeters, longitudinalMeters: regionInMeters)
-        mapView.setRegion(region, animated: true)
+//        guard let location = locations.last else {return}
+//        let center = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+//        let region = MKCoordinateRegion.init(center: center, latitudinalMeters: regionInMeters, longitudinalMeters: regionInMeters)
+//        mapView.setRegion(region, animated: true)
     }
     
     

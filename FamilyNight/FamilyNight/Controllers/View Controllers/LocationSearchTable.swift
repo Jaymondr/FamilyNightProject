@@ -49,22 +49,22 @@ class LocationSearchTable: UITableViewController {
 extension LocationSearchTable : UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
   
-        guard let mapView = mapView,
-            let searchBarText = searchController.searchBar.text else { return }
-        
-        let request = MKLocalSearch.Request()
-        request.naturalLanguageQuery = searchBarText
-        request.region = mapView.region
-        let search = MKLocalSearch(request: request)
-        
-        search.start { response, _ in
-            guard let response = response else {
-                return
-            }
-            self.matchingItems = response.mapItems
-            print(self.matchingItems.count)
-            self.tableView.reloadData()
-        }
+//        guard let mapView = mapView,
+//            let searchBarText = searchController.searchBar.text else { return }
+//        
+//        let request = MKLocalSearch.Request()
+//        request.naturalLanguageQuery = searchBarText
+//        request.region = mapView.region
+//        let search = MKLocalSearch(request: request)
+//        
+//        search.start { response, _ in
+//            guard let response = response else {
+//                return
+//            }
+//            self.matchingItems = response.mapItems
+//            print(self.matchingItems.count)
+//            self.tableView.reloadData()
+//        }
     }
 }//End of extension
 

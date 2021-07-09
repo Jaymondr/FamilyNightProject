@@ -30,14 +30,14 @@ class MapViewController: UIViewController {
         let locationSearchTable = storyboard!.instantiateViewController(withIdentifier: "LocationSearchTable") as! LocationSearchTable
         resultSearchController = UISearchController(searchResultsController: locationSearchTable)
         resultSearchController?.searchResultsUpdater = locationSearchTable
-        addSearchBar()
+//        addSearchBar()
         
-        locationSearchTable.mapView = mapView
-        locationSearchTable.handleMapSearchDelegate = self
+//        locationSearchTable.mapView = mapView
+//        locationSearchTable.handleMapSearchDelegate = self
 
-        let longPress = UILongPressGestureRecognizer(target: self, action: #selector(MapViewController.mapLongPress(_:)))
-        longPress.minimumPressDuration = 1.5 // seconds
-        mapView.addGestureRecognizer(longPress)
+//        let longPress = UILongPressGestureRecognizer(target: self, action: #selector(MapViewController.mapLongPress(_:)))
+//        longPress.minimumPressDuration = 1.5 // seconds
+//        mapView.addGestureRecognizer(longPress)
         
     }
     
@@ -54,18 +54,18 @@ class MapViewController: UIViewController {
     }
     
     @objc func mapLongPress(_ recognizer: UIGestureRecognizer) {
-        print("A long press has been detected.")
-
-        let touchedAt = recognizer.location(in: self.mapView) // adds the location on the view that was pressed
-        let touchedAtCoordinate : CLLocationCoordinate2D = mapView.convert(touchedAt, toCoordinateFrom: self.mapView) // will get coordinates
-        let newPin: MKPointAnnotation = MKPointAnnotation()
+//        print("A long press has been detected.")
+//
+//        let touchedAt = recognizer.location(in: self.mapView) // adds the location on the view that was pressed
+//        let touchedAtCoordinate : CLLocationCoordinate2D = mapView.convert(touchedAt, toCoordinateFrom: self.mapView) // will get coordinates
+//        let newPin: MKPointAnnotation = MKPointAnnotation()
 
     }
     
     func checkLocationAuthorization() {
-        switch  CLLocationManager.authorizationStatus() {
+        switch  CLLocationManager().authorizationStatus {
         case .authorizedWhenInUse:
-            mapView.showsUserLocation = true
+//            mapView.showsUserLocation = true
             centerViewOnUserLocation()
             locationManager.startUpdatingLocation()
             break
@@ -83,10 +83,10 @@ class MapViewController: UIViewController {
     }
     
     func centerViewOnUserLocation() {
-        if let location = locationManager.location?.coordinate {
-            let region = MKCoordinateRegion.init(center: location, latitudinalMeters: regionInMeters, longitudinalMeters: regionInMeters)
-            mapView.setRegion(region, animated: true)
-        }
+//        if let location = locationManager.location?.coordinate {
+//            let region = MKCoordinateRegion.init(center: location, latitudinalMeters: regionInMeters, longitudinalMeters: regionInMeters)
+//            mapView.setRegion(region, animated: true)
+//        }
     }
     
     func setupLocationManager() {
@@ -122,10 +122,10 @@ extension MapViewController : CLLocationManagerDelegate {
     }
     
     private func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        guard let location = locations.last else {return}
-        let center = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
-        let region = MKCoordinateRegion.init(center: center, latitudinalMeters: regionInMeters, longitudinalMeters: regionInMeters)
-        mapView.setRegion(region, animated: true)
+//        guard let location = locations.last else {return}
+//        let center = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+//        let region = MKCoordinateRegion.init(center: center, latitudinalMeters: regionInMeters, longitudinalMeters: regionInMeters)
+//        mapView.setRegion(region, animated: true)
     }
 }
 
@@ -141,21 +141,21 @@ extension MapViewController: HandleMapSearch {
     
     func dropPinZoomIn(placemark: MKPlacemark){
         // cache the pin
-        selectedPin = placemark
-        // clear existing pins
-        mapView.removeAnnotations(mapView.annotations)
-        let annotation = MKPointAnnotation()
-        annotation.coordinate = placemark.coordinate
-        annotation.title = placemark.name
-        
-        if let city = placemark.locality,
-            let state = placemark.administrativeArea {
-                annotation.subtitle = "\(city) \(state)"
-        }
-        
-        mapView.addAnnotation(annotation)
-        let span = MKCoordinateSpan(latitudeDelta: regionInMeters, longitudeDelta: regionInMeters)
-        let region = MKCoordinateRegion.init(center: placemark.coordinate, latitudinalMeters: regionInMeters, longitudinalMeters: regionInMeters)
-        mapView.setRegion(region, animated: true)
+//        selectedPin = placemark
+//        // clear existing pins
+//        mapView.removeAnnotations(mapView.annotations)
+//        let annotation = MKPointAnnotation()
+//        annotation.coordinate = placemark.coordinate
+//        annotation.title = placemark.name
+//
+//        if let city = placemark.locality,
+//            let state = placemark.administrativeArea {
+//                annotation.subtitle = "\(city) \(state)"
+//        }
+//
+//        mapView.addAnnotation(annotation)
+//        let span = MKCoordinateSpan(latitudeDelta: regionInMeters, longitudeDelta: regionInMeters)
+//        let region = MKCoordinateRegion.init(center: placemark.coordinate, latitudinalMeters: regionInMeters, longitudinalMeters: regionInMeters)
+//        mapView.setRegion(region, animated: true)
     }
 }//End of extension
