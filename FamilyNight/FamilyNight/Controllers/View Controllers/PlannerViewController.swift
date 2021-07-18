@@ -8,6 +8,7 @@ import Firebase
 import UIKit
 import CoreLocation
 import MapKit
+import EventKit
 
 class PlannerViewController: UIViewController, UITextViewDelegate {
     
@@ -17,7 +18,6 @@ class PlannerViewController: UIViewController, UITextViewDelegate {
     @IBOutlet weak var startDatePicker: UIDatePicker!
     @IBOutlet weak var endDatePicker: UIDatePicker!
     @IBOutlet weak var createButton: UIButton!
-    @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var parkButton: UIButton!
     @IBOutlet weak var hikesButton: UIButton!
     @IBOutlet weak var movieTheatreButton: UIButton!
@@ -112,38 +112,74 @@ class PlannerViewController: UIViewController, UITextViewDelegate {
     }
     
     @IBAction func createButtonTapped(_ sender: Any) {
-       
         guard let event = self.event else {return}
         
-        var components = URLComponents()
-        components.scheme = scheme
-        components.host = host
-        components.path = path
-        
-        let eventIDQueryItem = URLQueryItem(name: "id", value: event.id)
-        components.queryItems = [eventIDQueryItem]
-        
-        guard let linkParameter = components.url else {return}
-        print("I am sharing \(linkParameter.absoluteString)")
-        //Create the big dynamic link
-        guard let shareLink = DynamicLinkComponents.init(link: linkParameter, domainURIPrefix: appLink)
-        else {
-            print("couldnt create FDL components")
-            return
-        }
-        if let myBundleId = Bundle.main.bundleIdentifier {
-            shareLink.iOSParameters = DynamicLinkIOSParameters(bundleID: myBundleId)
+        let alert = UIAlertController(title: "Create Event", message: "Would you like to add this event to your calendar, or create a link", preferredStyle: .alert)
+        let calendarAction = UIAlertAction(title: "Calendar", style: .default) { result in
+            print("add to calendar action")
             
+            self.eventStore.requestAccess(to: .event) { (granted, error) in
+              
+              if (granted) && (error == nil) {
+                  print("granted \(granted)")
+                  print("error \(error)")
+                  
+                let event:EKEvent = EKEvent(eventStore: self.eventStore)
+                  
+                event.title = self.event?.title
+                event.startDate = self.event?.startDate
+                event.endDate = self.event?.endDate
+                event.notes = self.event?.description
+                event.calendar = self.eventStore.defaultCalendarForNewEvents
+                  do {
+                    try self.eventStore.save(event, span: .thisEvent)
+                  } catch let error as NSError {
+                      print("failed to save event with error : \(error)")
+                  }
+                  print("Saved Event")
+              }
+              else{
+              
+                  print("failed to save event with error : \(error) or access not granted")
+              }
+            }
         }
-        shareLink.iOSParameters?.appStoreID = "962194608"
-        shareLink.socialMetaTagParameters = DynamicLinkSocialMetaTagParameters()
-        shareLink.socialMetaTagParameters?.title = "\(event.title) from Family Night"
-        shareLink.socialMetaTagParameters?.descriptionText = event.description
-        //        shareLink.socialMetaTagParameters?.imageURL =
-        guard let longURL = shareLink.url else {return}
-        print(longURL.absoluteString)
+        let linkAction = UIAlertAction(title: "Link", style: .default) { _ in
+            var components = URLComponents()
+            components.scheme = self.scheme
+            components.host = self.host
+            components.path = self.path
+            
+            let eventIDQueryItem = URLQueryItem(name: "id", value: event.id)
+            components.queryItems = [eventIDQueryItem]
+            
+            guard let linkParameter = components.url else {return}
+            print("I am sharing \(linkParameter.absoluteString)")
+            //Create the big dynamic link
+            guard let shareLink = DynamicLinkComponents.init(link: linkParameter, domainURIPrefix: self.appLink)
+            else {
+                print("couldnt create FDL components")
+                return
+            }
+            if let myBundleId = Bundle.main.bundleIdentifier {
+                shareLink.iOSParameters = DynamicLinkIOSParameters(bundleID: myBundleId)
+                
+            }
+            shareLink.iOSParameters?.appStoreID = "962194608"
+            shareLink.socialMetaTagParameters = DynamicLinkSocialMetaTagParameters()
+            shareLink.socialMetaTagParameters?.title = "\(event.title) from Family Night"
+            shareLink.socialMetaTagParameters?.descriptionText = event.description
+            //        shareLink.socialMetaTagParameters?.imageURL =
+            guard let longURL = shareLink.url else {return}
+            print(longURL.absoluteString)
+            
+            self.showShareSheetURL(url: longURL)
+
+        }
+        alert.addAction(calendarAction)
+        alert.addAction(linkAction)
+        self.present(alert, animated: true)
         
-        showShareSheetURL(url: longURL)
     }
         
         func showShareSheetURL(url: URL) {
@@ -162,6 +198,7 @@ class PlannerViewController: UIViewController, UITextViewDelegate {
     let host = "www.familynight.com"
     let path = "/events"
     let appLink = "https://familynight.page.link/test1"
+    let eventStore : EKEventStore = EKEventStore()
     
     let regionInMeters: Double = 1000
     let locationManager = CLLocationManager()
