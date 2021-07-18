@@ -88,6 +88,7 @@ class PlannerViewController: UIViewController, UITextViewDelegate {
         guard let title = titleTextField.text, !title.isEmpty,
               let description = descriptionTextView.text,
               let startDate = startDatePicker?.date,
+              let endDate = endDatePicker?.date,
               let location = locationTextField.text
         
         else {return}
@@ -95,12 +96,13 @@ class PlannerViewController: UIViewController, UITextViewDelegate {
             event.title = title
             event.description = description
             event.startDate = startDate
+            event.endDate = endDate
             event.location = location
             
             EventController.shared.updateEventInFirebase(event: event)
-            EventController.shared.updateEvent(event: event, title: title, description: description, startDate: startDate, location: location)
+            EventController.shared.updateEvent(event: event, title: title, description: description, startDate: startDate, endDate: endDate, location: location)
         } else {
-            let newEvent = Event(title: title, description: description, startDate: startDate, location: location)
+            let newEvent = Event(title: title, description: description, startDate: startDate, endDate: endDate, location: location)
             EventController.shared.createEventInFirebase(event: newEvent)
             EventController.shared.createEvent(event: newEvent)
             
@@ -145,7 +147,7 @@ class PlannerViewController: UIViewController, UITextViewDelegate {
     }
         
         func showShareSheetURL(url: URL) {
-            let promoText = "You've been invited to this cool event! \(self.event?.title ?? "") View in Family Time App!"
+            let promoText = "You've been invited to this cool event! \(self.event?.title ?? "") View in Family Night App!"
             let activityVC = UIActivityViewController(activityItems: [promoText, url], applicationActivities: nil)
             present(activityVC, animated: true)
         }
@@ -183,6 +185,7 @@ class PlannerViewController: UIViewController, UITextViewDelegate {
         titleTextField.text = event?.title
         descriptionTextView.text = event?.description
         startDatePicker.date = event?.startDate ?? Date()
+        endDatePicker.date = event?.endDate ?? Date()
         locationTextField.text = event?.location
     }
     
