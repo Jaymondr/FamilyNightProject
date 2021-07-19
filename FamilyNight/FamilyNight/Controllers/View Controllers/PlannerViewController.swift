@@ -38,29 +38,15 @@ class PlannerViewController: UIViewController, UITextViewDelegate {
     //MARK: - Actions
     @IBAction func locationButtonTapped(_ sender: Any) {
         
-        let alertController = UIAlertController(title: "Add Location", message: "Enter Address", preferredStyle: .alert)
+        let alertController = UIAlertController(title: "Add Location", message: nil, preferredStyle: .alert)
     
         alertController.addTextField { (textfield : UITextField!) -> Void in
-            textfield.placeholder = "Address line 1"
+            textfield.placeholder = "Enter Address"
         }
-        alertController.addTextField { (textfield : UITextField!) -> Void in
-            textfield.placeholder = "City"
-        }
-        alertController.addTextField { (textfield : UITextField!) -> Void in
-            textfield.placeholder = "State"
-        }
-        alertController.addTextField { (textfield : UITextField!) -> Void in
-            textfield.placeholder = "Zip"
-        }
-
         
         let saveAction = UIAlertAction(title: "Save", style: .default, handler: { alert -> Void in
-            let addOne = alertController.textFields![0].text
-            let city = alertController.textFields![1].text
-            let state = alertController.textFields![2].text
-            let zip = alertController.textFields![3].text
-
-            self.locationTextField.text = String(describing: addOne ?? "" + city ?? "" + state ?? "" + zip ?? "")
+            
+            self.locationTextField.text = alertController.textFields![0].text
         })
         
         alertController.addAction(saveAction)
