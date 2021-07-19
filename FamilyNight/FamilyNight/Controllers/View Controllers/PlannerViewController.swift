@@ -36,6 +36,36 @@ class PlannerViewController: UIViewController, UITextViewDelegate {
     }
     
     //MARK: - Actions
+    @IBAction func locationButtonTapped(_ sender: Any) {
+        
+        let alertController = UIAlertController(title: "Add Location", message: "Enter Address", preferredStyle: .alert)
+    
+        alertController.addTextField { (textfield : UITextField!) -> Void in
+            textfield.placeholder = "Address line 1"
+        }
+        alertController.addTextField { (textfield : UITextField!) -> Void in
+            textfield.placeholder = "City"
+        }
+        alertController.addTextField { (textfield : UITextField!) -> Void in
+            textfield.placeholder = "State"
+        }
+        alertController.addTextField { (textfield : UITextField!) -> Void in
+            textfield.placeholder = "Zip"
+        }
+
+        
+        let saveAction = UIAlertAction(title: "Save", style: .default, handler: { alert -> Void in
+            let addOne = alertController.textFields![0].text
+            let city = alertController.textFields![1].text
+            let state = alertController.textFields![2].text
+            let zip = alertController.textFields![3].text
+
+            self.locationTextField.text = String(describing: addOne ?? "" + city ?? "" + state ?? "" + zip ?? "")
+        })
+        
+        alertController.addAction(saveAction)
+        present(alertController, animated: true)
+    }
     
     @IBAction func parkButtonTapped(_ sender: Any) {
         guard let locValue: CLLocationCoordinate2D = locationManager.location?.coordinate else {return}
@@ -85,33 +115,13 @@ class PlannerViewController: UIViewController, UITextViewDelegate {
     }
     
     @IBAction func saveButtonTapped(_ sender: Any) {
-        guard let title = titleTextField.text, !title.isEmpty,
-              let description = descriptionTextView.text,
-              let startDate = startDatePicker?.date,
-              let endDate = endDatePicker?.date,
-              let location = locationTextField.text
-        
-        else {return}
-        if let event = event {
-            event.title = title
-            event.description = description
-            event.startDate = startDate
-            event.endDate = endDate
-            event.location = location
-            
-            EventController.shared.updateEventInFirebase(event: event)
-            EventController.shared.updateEvent(event: event, title: title, description: description, startDate: startDate, endDate: endDate, location: location)
-        } else {
-            let newEvent = Event(title: title, description: description, startDate: startDate, endDate: endDate, location: location)
-            EventController.shared.createEventInFirebase(event: newEvent)
-            EventController.shared.createEvent(event: newEvent)
-            
-        }
-        
+    saveEvent()
         navigationController?.popViewController(animated: true)
+
     }
     
     @IBAction func createButtonTapped(_ sender: Any) {
+        saveEvent()
         guard let event = self.event else {return}
         
         let alert = UIAlertController(title: "Create Event", message: "Would you like to add this event to your calendar, or create a link", preferredStyle: .alert)
@@ -130,6 +140,8 @@ class PlannerViewController: UIViewController, UITextViewDelegate {
                 event.startDate = self.event?.startDate
                 event.endDate = self.event?.endDate
                 event.notes = self.event?.description
+//                event.isAllDay = self.event?.isAllDay
+                event.location = self.event?.location
                 event.calendar = self.eventStore.defaultCalendarForNewEvents
                   do {
                     try self.eventStore.save(event, span: .thisEvent)
@@ -224,6 +236,32 @@ class PlannerViewController: UIViewController, UITextViewDelegate {
         startDatePicker.date = event?.startDate ?? Date()
         endDatePicker.date = event?.endDate ?? Date()
         locationTextField.text = event?.location
+    }
+    
+    func saveEvent() {
+    guard let title = titleTextField.text, !title.isEmpty,
+          let description = descriptionTextView.text,
+          let startDate = startDatePicker?.date,
+          let endDate = endDatePicker?.date,
+          let location = locationTextField.text
+    
+    else {return}
+    if let event = event {
+        event.title = title
+        event.description = description
+        event.startDate = startDate
+        event.endDate = endDate
+        event.location = location
+        
+        EventController.shared.updateEventInFirebase(event: event)
+        EventController.shared.updateEvent(event: event, title: title, description: description, startDate: startDate, endDate: endDate, location: location)
+    } else {
+        let newEvent = Event(title: title, description: description, startDate: startDate, endDate: endDate, location: location)
+        EventController.shared.createEventInFirebase(event: newEvent)
+        EventController.shared.createEvent(event: newEvent)
+        
+    }
+    
     }
     
     //MARK: - Location Functions
