@@ -29,7 +29,6 @@ class PlannerViewController: UIViewController, UITextViewDelegate {
         addStyle()
         setupViews()
         checkLocationAuthorization()
-        centerViewOnUserLocation()
         setupLocationManager()
         checkLocationServices()
         hideKeyboard()
@@ -39,7 +38,7 @@ class PlannerViewController: UIViewController, UITextViewDelegate {
     @IBAction func locationButtonTapped(_ sender: Any) {
         
         let alertController = UIAlertController(title: "Add Location", message: nil, preferredStyle: .alert)
-    
+        
         alertController.addTextField { (textfield : UITextField!) -> Void in
             textfield.placeholder = "Enter Address"
         }
@@ -101,9 +100,9 @@ class PlannerViewController: UIViewController, UITextViewDelegate {
     }
     
     @IBAction func saveButtonTapped(_ sender: Any) {
-    saveEvent()
+        saveEvent()
         navigationController?.popViewController(animated: true)
-
+        
     }
     
     @IBAction func createButtonTapped(_ sender: Any) {
@@ -112,34 +111,41 @@ class PlannerViewController: UIViewController, UITextViewDelegate {
         
         let alert = UIAlertController(title: "Create Event", message: "Would you like to add this event to your calendar, or create a link", preferredStyle: .alert)
         let calendarAction = UIAlertAction(title: "Calendar", style: .default) { result in
-            print("add to calendar action")
+            let successAlert = UIAlertController(title: "Event has been added to your calendar", message: nil, preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "OK", style: .cancel) { _ in
+                self.navigationController?.popViewController(animated: true)
+            }
+            successAlert.addAction(okAction)
+            self.present(successAlert, animated: true, completion: nil)
             
+
             self.eventStore.requestAccess(to: .event) { (granted, error) in
-              
-              if (granted) && (error == nil) {
-                  print("granted \(granted)")
-                  print("error \(error)")
-                  
-                let event:EKEvent = EKEvent(eventStore: self.eventStore)
-                  
-                event.title = self.event?.title
-                event.startDate = self.event?.startDate
-                event.endDate = self.event?.endDate
-                event.notes = self.event?.description
-//                event.isAllDay = self.event?.isAllDay
-                event.location = self.event?.location
-                event.calendar = self.eventStore.defaultCalendarForNewEvents
-                  do {
-                    try self.eventStore.save(event, span: .thisEvent)
-                  } catch let error as NSError {
-                      print("failed to save event with error : \(error)")
-                  }
-                  print("Saved Event")
-              }
-              else{
-              
-                  print("failed to save event with error : \(error) or access not granted")
-              }
+                
+                if (granted) && (error == nil) {
+                    print("granted \(granted)")
+                    print("error \(String(describing: error))")
+                    
+                    let event:EKEvent = EKEvent(eventStore: self.eventStore)
+                    
+                    event.title = self.event?.title
+                    event.startDate = self.event?.startDate
+                    event.endDate = self.event?.endDate
+                    event.notes = self.event?.description
+                    event.location = self.event?.location
+                    event.calendar = self.eventStore.defaultCalendarForNewEvents
+                    
+                    do {
+                        try self.eventStore.save(event, span: .thisEvent)
+                    } catch let error as NSError {
+                        print("failed to save event with error : \(error)")
+                    }
+                    
+                    print("Saved Event")
+                }
+                else{
+                    
+                    print("failed to save event with error : \(String(describing: error)) or access not granted")
+                }
             }
         }
         let linkAction = UIAlertAction(title: "Link", style: .default) { _ in
@@ -172,21 +178,27 @@ class PlannerViewController: UIViewController, UITextViewDelegate {
             print(longURL.absoluteString)
             
             self.showShareSheetURL(url: longURL)
-
+            
         }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { _ in
+            
+        }
+        
         alert.addAction(calendarAction)
         alert.addAction(linkAction)
+        alert.addAction(cancelAction)
         self.present(alert, animated: true)
         
     }
-        
-        func showShareSheetURL(url: URL) {
-            let promoText = "You've been invited to this cool event! \(self.event?.title ?? "") View in Family Night App!"
-            let activityVC = UIActivityViewController(activityItems: [promoText, url], applicationActivities: nil)
-            present(activityVC, animated: true)
-        }
     
-   
+    func showShareSheetURL(url: URL) {
+        let promoText = "You've been invited to this cool event! \(self.event?.title ?? "") View in Family Night App!"
+        let activityVC = UIActivityViewController(activityItems: [promoText, url], applicationActivities: nil)
+        present(activityVC, animated: true)
+    }
+    
+    
     
     
     
@@ -225,37 +237,35 @@ class PlannerViewController: UIViewController, UITextViewDelegate {
     }
     
     func saveEvent() {
-    guard let title = titleTextField.text, !title.isEmpty,
-          let description = descriptionTextView.text,
-          let startDate = startDatePicker?.date,
-          let endDate = endDatePicker?.date,
-          let location = locationTextField.text
-    
-    else {return}
-    if let event = event {
-        event.title = title
-        event.description = description
-        event.startDate = startDate
-        event.endDate = endDate
-        event.location = location
+        guard let title = titleTextField.text, !title.isEmpty,
+              let description = descriptionTextView.text,
+              let startDate = startDatePicker?.date,
+              let endDate = endDatePicker?.date,
+              let location = locationTextField.text
         
-        EventController.shared.updateEventInFirebase(event: event)
-        EventController.shared.updateEvent(event: event, title: title, description: description, startDate: startDate, endDate: endDate, location: location)
-    } else {
-        let newEvent = Event(title: title, description: description, startDate: startDate, endDate: endDate, location: location)
-        EventController.shared.createEventInFirebase(event: newEvent)
-        EventController.shared.createEvent(event: newEvent)
+        else {return}
+        if let event = event {
+            event.title = title
+            event.description = description
+            event.startDate = startDate
+            event.endDate = endDate
+            event.location = location
+            
+            EventController.shared.updateEventInFirebase(event: event)
+            EventController.shared.updateEvent(event: event, title: title, description: description, startDate: startDate, endDate: endDate, location: location)
+        } else {
+            let newEvent = Event(title: title, description: description, startDate: startDate, endDate: endDate, location: location)
+            EventController.shared.createEventInFirebase(event: newEvent)
+            EventController.shared.createEvent(event: newEvent)
+            
+        }
         
-    }
-    
     }
     
     //MARK: - Location Functions
     func checkLocationAuthorization() {
         switch  CLLocationManager().authorizationStatus {
         case .authorizedWhenInUse:
-//            mapView.showsUserLocation = true
-            centerViewOnUserLocation()
             locationManager.startUpdatingLocation()
             break
         case .denied:
@@ -269,13 +279,6 @@ class PlannerViewController: UIViewController, UITextViewDelegate {
         case .authorizedAlways:
             break
         }
-    }
-    
-    func centerViewOnUserLocation() {
-//        if let location = locationManager.location?.coordinate {
-//            let region = MKCoordinateRegion.init(center: location, latitudinalMeters: regionInMeters, longitudinalMeters: regionInMeters)
-//            mapView.setRegion(region, animated: true)
-//        }
     }
     
     func setupLocationManager() {
@@ -311,7 +314,6 @@ class PlannerViewController: UIViewController, UITextViewDelegate {
         self.descriptionTextView.backgroundColor = CustomColors.lightgrayblue
         self.descriptionTextView.tintColor = CustomColors.GrayBlue
         self.descriptionTextView.textColor = CustomColors.GrayBlue
-        //        self.descriptionTextView.text = "Insert details here...(who, what, when, where)"
         self.descriptionTextView.addRoundedCorner()
         //Quick Places Button Styles
         parkButton.backgroundColor = CustomColors.ParkGreen
@@ -367,10 +369,6 @@ extension PlannerViewController : CLLocationManagerDelegate {
     }
     
     private func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-//        guard let location = locations.last else {return}
-//        let center = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
-//        let region = MKCoordinateRegion.init(center: center, latitudinalMeters: regionInMeters, longitudinalMeters: regionInMeters)
-//        mapView.setRegion(region, animated: true)
     }
     
     
