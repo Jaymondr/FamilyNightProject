@@ -5,10 +5,7 @@
 //  Created by Jaymond Richardson on 6/2/21.
 //
 
-import UIKit
-import FirebaseFirestore
-import MapKit
-import FirebaseAuth
+import Firebase
 
 class EventController {
     //MARK: - Shared Instance
@@ -32,6 +29,7 @@ class EventController {
         eventRef.setData(["title" : event.title,
                          "description" : event.description,
                          "startDate" : event.startDate,
+                         "endDate" : event.endDate,
                          "location" : event.location])
         
     }
@@ -41,13 +39,15 @@ class EventController {
         eventRef.setData(["title" : event.title,
                           "description" : event.description,
                           "startDate" : event.startDate,
+                          "endDate" : event.endDate,
                           "location" : event.location], merge: true)
     }
     
-    func updateEvent(event: Event, title: String, description: String, startDate: Date, location: String) {
+    func updateEvent(event: Event, title: String, description: String, startDate: Date, endDate: Date, location: String) {
         event.title = title
         event.description = description
         event.startDate = startDate
+        event.endDate = endDate
         event.location = location
         saveToPersistenceStore()
     }
@@ -76,12 +76,13 @@ class EventController {
                     let title = eventData["title"] as? String ?? ""
                     let description = eventData["description"] as? String ?? ""
                     let startDate: Date = Timestamp.dateValue(eventData["startDate"] as? Timestamp ?? Timestamp())()
+                    let endDate: Date = Timestamp.dateValue(eventData["endDate"] as? Timestamp ?? Timestamp())()
                     //                    let startDate = eventData["startDate"] as? Date ?? Date()
                     
                     let location = eventData["location"] as? String ?? ""
                     let id = eventData["id"] as? String ?? ""
                     
-                    let event = Event(title: title, description: description, startDate: startDate, location: location, id: id)
+                    let event = Event(title: title, description: description, startDate: startDate, endDate: endDate, location: location, id: id)
                     self.events.append(event)
                 }
                 completion(true)
@@ -103,10 +104,11 @@ class EventController {
                         let title = eventData["title"] as? String ?? ""
                         let description = eventData["description"] as? String ?? ""
                         let startDate: Date = Timestamp.dateValue(eventData["startDate"] as? Timestamp ?? Timestamp())()
+                        let endDate: Date = Timestamp.dateValue(eventData["endDate"] as? Timestamp ?? Timestamp())()
                         let location = eventData["location"] as? String ?? ""
                         let id = eventData["id"] as? String ?? ""
                         
-                        let event = Event(title: title, description: description, startDate: startDate, location: location, id: id)
+                        let event = Event(title: title, description: description, startDate: startDate, endDate: endDate, location: location, id: id)
                         self.eventDynamicLink = event
                     }
                     completion(true)

@@ -36,9 +36,9 @@
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Please allow us to use your location to fetch places of interest near you</string>
 	<key>NSCalendarsUsageDescription</key>
-	<string>let me in</string>
+	<string>Please allow access to calendar</string>
 	<key>NSRemindersUsageDescription</key>
-	<string>pretty please</string>
+	<string>Please allow access to reminders</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>

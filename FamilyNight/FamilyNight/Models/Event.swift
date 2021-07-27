@@ -13,13 +13,15 @@ class Event: Codable {
     var title: String
     var description: String
     var startDate: Date
+    var endDate: Date
     var location: String
     var id: String
     
-    init(title: String, description: String, startDate: Date, location: String, id: String = UUID().uuidString) {
+    init(title: String, description: String, startDate: Date, endDate: Date, location: String, id: String = UUID().uuidString) {
         self.title = title
         self.description = description
         self.startDate = startDate
+        self.endDate = endDate
         self.location = location
         self.id = id
     }

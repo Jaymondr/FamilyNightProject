@@ -37,9 +37,9 @@ class GoalsViewController: UIViewController, UIPickerViewDataSource, UIPickerVie
     }
     @IBAction func saveButtonTapped(_ sender: Any) {
         guard let goal = pickerValue else { return }
-        let progess = progressPercentage
-        GoalController.shared.createGoal(goal: goal, progress: progess)
-        print("\(goal)\(progess)")
+        let progress = progressPercentage
+        GoalController.shared.createGoal(goal: goal, progress: progress)
+        print("\(goal)\(progress)")
     }
     
     
