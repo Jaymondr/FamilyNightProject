@@ -70,7 +70,6 @@ class EventViewController: UIViewController {
         //Subtitle
         self.subtitle.textColor = CustomColors.Gray
         view.tintColor = CustomColors.Blue
-//    self.navigationController?.tabBarController.sh
     }
     func assignbackground(){
           let background = UIImage(named: "launchScreenImage")
@@ -91,15 +90,6 @@ class EventViewController: UIViewController {
             EventController.shared.loadFromPersistenceStore()
             self.events = EventController.shared.events
             self.tableView.reloadData()
-//            EventController.shared.fetchEvents { success in
-//                if success {
-//                    print("Event Count: \(EventController.shared.events.count)")
-//                    self.events = EventController.shared.events
-//                    self.tableView.reloadData()
-//                } else {
-//                    print("Houston we have a problem!")
-//                }
-//            }
         }
     }
 }//End of class

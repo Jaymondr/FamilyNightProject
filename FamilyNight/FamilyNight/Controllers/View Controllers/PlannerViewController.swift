@@ -360,7 +360,6 @@ class PlannerViewController: UIViewController, UITextViewDelegate {
     
 }//End of class
 
-
 //MARK: - Extensions
 extension PlannerViewController : CLLocationManagerDelegate {
     private func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
