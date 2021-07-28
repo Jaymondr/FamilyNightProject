@@ -290,7 +290,6 @@ class PlannerViewController: UIViewController, UITextViewDelegate {
         if CLLocationManager.locationServicesEnabled() {
             setupLocationManager()
             checkLocationAuthorization()
-            //setup location manager
         } else {
             //show aler telling user how to turn this on
         }

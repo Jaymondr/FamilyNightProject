@@ -29,15 +29,6 @@ class MapViewController: UIViewController {
         checkLocationServices()
         let locationSearchTable = storyboard!.instantiateViewController(withIdentifier: "LocationSearchTable") as! LocationSearchTable
         resultSearchController = UISearchController(searchResultsController: locationSearchTable)
-        resultSearchController?.searchResultsUpdater = locationSearchTable
-//        addSearchBar()
-        
-//        locationSearchTable.mapView = mapView
-//        locationSearchTable.handleMapSearchDelegate = self
-
-//        let longPress = UILongPressGestureRecognizer(target: self, action: #selector(MapViewController.mapLongPress(_:)))
-//        longPress.minimumPressDuration = 1.5 // seconds
-//        mapView.addGestureRecognizer(longPress)
         
     }
     

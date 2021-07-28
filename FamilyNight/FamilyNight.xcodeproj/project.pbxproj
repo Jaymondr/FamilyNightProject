@@ -29,7 +29,6 @@
 		678E28C32646DC2C005F6F49 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 678E28C22646DC2C005F6F49 /* Assets.xcassets */; };
 		678E28C62646DC2C005F6F49 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 678E28C42646DC2C005F6F49 /* LaunchScreen.storyboard */; };
 		67C1C98C26669A62007F5C97 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67C1C98B26669A62007F5C97 /* MapViewController.swift */; };
-		67C1C98F2666C53D007F5C97 /* ContactTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67C1C98E2666C53D007F5C97 /* ContactTableViewController.swift */; };
 		67C1C99726681B68007F5C97 /* EventController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67C1C99626681B68007F5C97 /* EventController.swift */; };
 		67EF6DD8269774020093FFD6 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67EF6DD7269774020093FFD6 /* Persistence.swift */; };
 /* End PBXBuildFile section */
@@ -185,7 +184,6 @@
 		678E28C52646DC2C005F6F49 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		678E28C72646DC2C005F6F49 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		67C1C98B26669A62007F5C97 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
-		67C1C98E2666C53D007F5C97 /* ContactTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactTableViewController.swift; sourceTree = "<group>"; };
 		67C1C99626681B68007F5C97 /* EventController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventController.swift; sourceTree = "<group>"; };
 		67EF6DD7269774020093FFD6 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -365,7 +363,6 @@
 				67848F21265DA66F00F0DCCE /* PlannerViewController.swift */,
 				67848F26265EB67900F0DCCE /* GoalsViewController.swift */,
 				67C1C98B26669A62007F5C97 /* MapViewController.swift */,
-				67C1C98E2666C53D007F5C97 /* ContactTableViewController.swift */,
 				6789114C266EE022000C9077 /* EventImageViewController.swift */,
 				676E921426727BDF00235FDF /* HelpTableViewController.swift */,
 				676E92192673E08400235FDF /* LocationSearchTable.swift */,
@@ -650,7 +647,6 @@
 				676E921C26741F7100235FDF /* GoalController.swift in Sources */,
 				67891153266FE784000C9077 /* EventIdeas.swift in Sources */,
 				67848F27265EB67900F0DCCE /* GoalsViewController.swift in Sources */,
-				67C1C98F2666C53D007F5C97 /* ContactTableViewController.swift in Sources */,
 				67EF6DD8269774020093FFD6 /* Persistence.swift in Sources */,
 				676E92182672811B00235FDF /* JRDropCell.swift in Sources */,
 				67891142266E8C6B000C9077 /* DateFormatter.swift in Sources */,

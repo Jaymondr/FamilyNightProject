@@ -56,7 +56,7 @@ class EventViewController: UIViewController {
     //MARK: - Functions
    private func addStyle() {
         assignbackground()
-        goalsButton.badgeColor = .systemYellow
+//        goalsButton.badgeColor = .systemYellow
         helpButton.badgeColor = CustomColors.GrayBlue
         //Plan Button
         self.planButton.setTitleColor(CustomColors.DarkBlue, for: .normal)
