@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-
+//SKU secretNameThatICameUpWith
 class Event: Codable {
     var title: String
     var description: String

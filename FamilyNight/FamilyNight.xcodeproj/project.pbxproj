@@ -236,23 +236,15 @@
 			isa = PBXGroup;
 			children = (
 				67848F1D265D99BF00F0DCCE /* CustomColors */,
-				6780CE682656020C00F6104B /* Main Screen Styles */,
 			);
 			path = Styles;
-			sourceTree = "<group>";
-		};
-		6780CE682656020C00F6104B /* Main Screen Styles */ = {
-			isa = PBXGroup;
-			children = (
-				6780CE692656022900F6104B /* ButtonStyles.swift */,
-			);
-			path = "Main Screen Styles";
 			sourceTree = "<group>";
 		};
 		67848F1D265D99BF00F0DCCE /* CustomColors */ = {
 			isa = PBXGroup;
 			children = (
 				67848F1E265D99D600F0DCCE /* CustomColors.swift */,
+				6780CE692656022900F6104B /* ButtonStyles.swift */,
 			);
 			path = CustomColors;
 			sourceTree = "<group>";

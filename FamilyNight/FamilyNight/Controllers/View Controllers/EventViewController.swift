@@ -37,16 +37,9 @@ class EventViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        EventController.shared.loadFromPersistenceStore()
-        tableView.reloadData()
         setup()
     }
-    
-    //MARK: - Actions
-    @IBAction func planButtonTapped(_ sender: Any) {
         
-    }
-    
     //MARK: - Properties
     var events = EventController.shared.events
     var event: Event?

@@ -49,7 +49,6 @@
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="28"/>
                                 <state key="normal" title="PLAN"/>
                                 <connections>
-                                    <action selector="planButtonTapped:" destination="kX9-D8-BwX" eventType="touchUpInside" id="ZgE-9F-Nug"/>
                                     <segue destination="SEf-W7-KNe" kind="show" identifier="toPlannerVC" id="vJW-NI-M29"/>
                                 </connections>
                             </button>

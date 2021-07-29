@@ -53,101 +53,136 @@ class PlannerViewController: UIViewController, UITextViewDelegate {
     }
     
     @IBAction func parkButtonTapped(_ sender: Any) {
-        guard let locValue: CLLocationCoordinate2D = locationManager.location?.coordinate else {return}
-        let areaLat = locValue.latitude
-        let areaLon = locValue.longitude
-        let area = "\(areaLat)\(areaLon)"
-        let parkURL = "http://maps.apple.com/?q=parks&s"
-        let finalURL = "\(parkURL)\(area)"
-        
-        if (UIApplication.shared.canOpenURL(URL(string:"http://maps.apple.com")!)) {
-            UIApplication.shared.open(URL(string: "\(finalURL)")!)
-            print(finalURL)
+        let alert = UIAlertController(title: "Continue in Maps?", message: "This will show parks near you.", preferredStyle: .alert)
+        let continueAction = UIAlertAction(title: "Continue", style: .default) { _ in
+            guard let locValue: CLLocationCoordinate2D = self.locationManager.location?.coordinate else {return}
+            let areaLat = locValue.latitude
+            let areaLon = locValue.longitude
+            let area = "\(areaLat)\(areaLon)"
+            let parkURL = "http://maps.apple.com/?q=parks&s"
+            let finalURL = "\(parkURL)\(area)"
             
-        } else {
-            NSLog("Can't use Apple Maps");
+            if (UIApplication.shared.canOpenURL(URL(string:"http://maps.apple.com")!)) {
+                UIApplication.shared.open(URL(string: "\(finalURL)")!)
+                print(finalURL)
+                
+            } else {
+                NSLog("Can't use Apple Maps");
+            }
         }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { _ in
+            
+        }
+        alert.addAction(continueAction)
+        alert.addAction(cancelAction)
+        self.present(alert, animated: true, completion: nil)
+        
     }
     
     @IBAction func movieTheatreButtonTapped(_ sender: Any) {
-        guard let locValue: CLLocationCoordinate2D = locationManager.location?.coordinate else {return}
-        let areaLat = locValue.latitude
-        let areaLon = locValue.longitude
-        let area = "\(areaLat)\(areaLon)"
-        
-        let parkURL = "http://maps.apple.com/?q=movie+theatre&s"
-        if (UIApplication.shared.canOpenURL(URL(string:"http://maps.apple.com")!)) {
-            UIApplication.shared.open(URL(string:
-                                            "\(parkURL)\(area)")!)
-        } else {
-            NSLog("Can't use Apple Maps");
+        let alert = UIAlertController(title: "Continue in Maps?", message: "This will show movie theatres near you.", preferredStyle: .alert)
+        let continueAction = UIAlertAction(title: "Continue", style: .default) { _ in
+            guard let locValue: CLLocationCoordinate2D = self.locationManager.location?.coordinate else {return}
+            let areaLat = locValue.latitude
+            let areaLon = locValue.longitude
+            let area = "\(areaLat)\(areaLon)"
+            
+            let parkURL = "http://maps.apple.com/?q=movie+theatre&s"
+            if (UIApplication.shared.canOpenURL(URL(string:"http://maps.apple.com")!)) {
+                UIApplication.shared.open(URL(string:
+                                                "\(parkURL)\(area)")!)
+            } else {
+                NSLog("Can't use Apple Maps");
+            }
         }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { _ in
+            
+        }
+        alert.addAction(continueAction)
+        alert.addAction(cancelAction)
+        self.present(alert, animated: true, completion: nil)
+        
     }
     
     @IBAction func hikesButtonTapped(_ sender: Any) {
-        guard let locValue: CLLocationCoordinate2D = locationManager.location?.coordinate else {return}
-        let areaLat = locValue.latitude
-        let areaLon = locValue.longitude
-        let area = "\(areaLat)\(areaLon)"
-        
-        let parkURL = "http://maps.apple.com/?q=trailheads&s"
-        if (UIApplication.shared.canOpenURL(URL(string:"http://maps.apple.com")!)) {
-            UIApplication.shared.open(URL(string:
-                                            "\(parkURL)\(area)")!)
-        } else {
-            NSLog("Can't use Apple Maps");
+        let alert = UIAlertController(title: "Continue in Maps?", message: "This will show hikes near you.", preferredStyle: .alert)
+        let continueAction = UIAlertAction(title: "Continue", style: .default) { _ in
+            
+            guard let locValue: CLLocationCoordinate2D = self.locationManager.location?.coordinate else {return}
+            let areaLat = locValue.latitude
+            let areaLon = locValue.longitude
+            let area = "\(areaLat)\(areaLon)"
+            
+            let parkURL = "http://maps.apple.com/?q=trailheads&s"
+            if (UIApplication.shared.canOpenURL(URL(string:"http://maps.apple.com")!)) {
+                UIApplication.shared.open(URL(string:
+                                                "\(parkURL)\(area)")!)
+            } else {
+                NSLog("Can't use Apple Maps");
+            }
         }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { _ in
+            
+        }
+        alert.addAction(continueAction)
+        alert.addAction(cancelAction)
+        self.present(alert, animated: true, completion: nil)
     }
     
     @IBAction func saveButtonTapped(_ sender: Any) {
         saveEvent()
-        navigationController?.popViewController(animated: true)
-        
+        let alert = UIAlertController(title: "Successful", message: "Your event has been saved successfully", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .cancel) { _ in
+            
+        }
+        alert.addAction(okAction)
+        self.present(alert, animated: true, completion: nil)
     }
     
     @IBAction func createButtonTapped(_ sender: Any) {
-        saveEvent()
-        guard let event = self.event else {return}
-        
-        let alert = UIAlertController(title: "Create Event", message: "Would you like to add this event to your calendar, or create a link", preferredStyle: .alert)
-        let calendarAction = UIAlertAction(title: "Calendar", style: .default) { result in
-            let successAlert = UIAlertController(title: "Event has been added to your calendar", message: nil, preferredStyle: .alert)
-            let okAction = UIAlertAction(title: "OK", style: .cancel) { _ in
-                self.navigationController?.popViewController(animated: true)
-            }
-            successAlert.addAction(okAction)
-            self.present(successAlert, animated: true, completion: nil)
+        self.saveEvent()
+        if let event = self.event {
             
-
-            self.eventStore.requestAccess(to: .event) { (granted, error) in
-                
-                if (granted) && (error == nil) {
-                    print("granted \(granted)")
-                    print("error \(String(describing: error))")
-                    
-                    let event:EKEvent = EKEvent(eventStore: self.eventStore)
-                    
-                    event.title = self.event?.title
-                    event.startDate = self.event?.startDate
-                    event.endDate = self.event?.endDate
-                    event.notes = self.event?.description
-                    event.location = self.event?.location
-                    event.calendar = self.eventStore.defaultCalendarForNewEvents
-                    
-                    do {
-                        try self.eventStore.save(event, span: .thisEvent)
-                    } catch let error as NSError {
-                        print("failed to save event with error : \(error)")
-                    }
-                    
-                    print("Saved Event")
+            let alert = UIAlertController(title: "Create Event", message: "Would you like to add this event to your calendar, or create a link", preferredStyle: .alert)
+            let calendarAction = UIAlertAction(title: "Calendar", style: .default) { result in
+                let successAlert = UIAlertController(title: "Event has been added to your calendar", message: nil, preferredStyle: .alert)
+                let okAction = UIAlertAction(title: "OK", style: .cancel) { _ in
+                    self.navigationController?.popViewController(animated: true)
                 }
-                else{
+                successAlert.addAction(okAction)
+                self.present(successAlert, animated: true, completion: nil)
+                
+                
+                self.eventStore.requestAccess(to: .event) { (granted, error) in
                     
-                    print("failed to save event with error : \(String(describing: error)) or access not granted")
+                    if (granted) && (error == nil) {
+                        print("granted \(granted)")
+                        print("error \(String(describing: error))")
+                        
+                        let event:EKEvent = EKEvent(eventStore: self.eventStore)
+                        
+                        event.title = self.event?.title
+                        event.startDate = self.event?.startDate
+                        event.endDate = self.event?.endDate
+                        event.notes = self.event?.description
+                        event.location = self.event?.location
+                        event.calendar = self.eventStore.defaultCalendarForNewEvents
+                        
+                        do {
+                            try self.eventStore.save(event, span: .thisEvent)
+                        } catch let error as NSError {
+                            print("failed to save event with error : \(error)")
+                        }
+                        
+                        print("Saved Event")
+                    }
+                    else{
+                        
+                        print("failed to save event with error : \(String(describing: error)) or access not granted")
+                    }
                 }
             }
-        }
+        
         let linkAction = UIAlertAction(title: "Link", style: .default) { _ in
             var components = URLComponents()
             components.scheme = self.scheme
@@ -180,16 +215,19 @@ class PlannerViewController: UIViewController, UITextViewDelegate {
             self.showShareSheetURL(url: longURL)
             
         }
-        
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { _ in
             
+            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { _ in
+                
+            }
+            
+            alert.addAction(calendarAction)
+            alert.addAction(linkAction)
+            alert.addAction(cancelAction)
+            self.present(alert, animated: true)
+            
+        } else {
+           //Alert directing user to save the event before sharing
         }
-        
-        alert.addAction(calendarAction)
-        alert.addAction(linkAction)
-        alert.addAction(cancelAction)
-        self.present(alert, animated: true)
-        
     }
     
     func showShareSheetURL(url: URL) {
@@ -197,6 +235,7 @@ class PlannerViewController: UIViewController, UITextViewDelegate {
         let activityVC = UIActivityViewController(activityItems: [promoText, url], applicationActivities: nil)
         present(activityVC, animated: true)
     }
+    
     
     
     
@@ -237,6 +276,7 @@ class PlannerViewController: UIViewController, UITextViewDelegate {
     }
     
     func saveEvent() {
+        //Create alert for successful save
         guard let title = titleTextField.text, !title.isEmpty,
               let description = descriptionTextView.text,
               let startDate = startDatePicker?.date,
@@ -244,6 +284,7 @@ class PlannerViewController: UIViewController, UITextViewDelegate {
               let location = locationTextField.text
         
         else {return}
+        
         if let event = event {
             event.title = title
             event.description = description
@@ -253,13 +294,14 @@ class PlannerViewController: UIViewController, UITextViewDelegate {
             
             EventController.shared.updateEventInFirebase(event: event)
             EventController.shared.updateEvent(event: event, title: title, description: description, startDate: startDate, endDate: endDate, location: location)
+            
         } else {
             let newEvent = Event(title: title, description: description, startDate: startDate, endDate: endDate, location: location)
             EventController.shared.createEventInFirebase(event: newEvent)
             EventController.shared.createEvent(event: newEvent)
-            
+            self.event = newEvent
+//            self.navigationController?.popViewController(animated: true)
         }
-        
     }
     
     //MARK: - Location Functions
@@ -278,6 +320,8 @@ class PlannerViewController: UIViewController, UITextViewDelegate {
             break
         case .authorizedAlways:
             break
+        @unknown default:
+            fatalError()
         }
     }
     
@@ -294,7 +338,6 @@ class PlannerViewController: UIViewController, UITextViewDelegate {
             //show aler telling user how to turn this on
         }
     }
-    
     
     //MARK: - Styles
     func addStyle() {
