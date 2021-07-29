@@ -23,13 +23,7 @@ class CalendarViewController: UIViewController, EKEventViewDelegate, EKCalendarC
     }
     
     @objc func didTapAdd() {
-        
-//        let vc = EKCalendarChooser()
-//        vc.showsDoneButton = true
-//        vc.showsDoneButton = true
-//        vc.delegate = self
-//        present(UINavigationController(rootViewController: vc), animated: true)
-        
+            
         store.requestAccess(to: .event) { [weak self] success, error in
             if success, error == nil {
                 DispatchQueue.main.async {
@@ -45,11 +39,6 @@ class CalendarViewController: UIViewController, EKEventViewDelegate, EKCalendarC
                     otherVC.event = newEvent
                     self?.present(otherVC, animated: true, completion: nil)
                     
-                    //                let vc = EKEventViewController()
-                    //                vc.delegate = self
-                    //                vc.event = newEvent
-                    //                let navVC = UINavigationController(rootViewController: vc)
-                    //                self?.present(navVC, animated: true)
                 }
             }
         }
