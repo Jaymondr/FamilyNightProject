@@ -25,10 +25,10 @@ var ideas: [Idea] = [
     Idea(title: "Play kick-ball"),
     Idea(title: "Plant a garden"),
     Idea(title: "Visit a museum"),
-    Idea(title: "Record yourselves acting out a play"),
-    Idea(title: "Buy and fly a kit"),
+    Idea(title: "Record acting out a play"),
+    Idea(title: "Buy and fly a kite"),
     Idea(title: "Play hide and seek in the dark"),
-    Idea(title: "Go for a hike"),
+    Idea(title: "Go on a hike"),
     Idea(title: "Have a race"),
     Idea(title: "Tell scary stories in the dark"),
     Idea(title: "Make a rope swing and hang it in a tree"),
@@ -48,6 +48,14 @@ var ideas: [Idea] = [
     Idea(title: "Have a garage sale"),
     Idea(title: "Go through a drive through and pay for the car behind you"),
     Idea(title: "Have ice cream for breakfast, and talk about why you dont care"),
+    Idea(title: "Go fishing"),
+    Idea(title: "Visit a waterfall"),
+    Idea(title: "Go bird watching"),
+    Idea(title: "Video call a loved one"),
+    Idea(title: "Go to a local bakery"),
+    Idea(title: "Make cookies for your neighbor"),
+    Idea(title: "Play charades with chalk outside"),
+    Idea(title: "Go to the zoo")
   
 ]
 

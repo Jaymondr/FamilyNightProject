@@ -151,13 +151,23 @@ class PlannerViewController: UIViewController, UITextViewDelegate {
     
     @IBAction func saveButtonTapped(_ sender: Any) {
         saveEvent()
+        guard let title = titleTextField.text, !title.isEmpty else {
+            let alert = UIAlertController(title: "Error Saving", message: "You must have a title to save an event", preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "Ok", style: .cancel) { _IOFBF in
+            }
+            alert.addAction(okAction)
+            self.present(alert, animated: true, completion: nil)
+            return
+        }
         let alert = UIAlertController(title: "Successful", message: "Your event has been saved successfully", preferredStyle: .alert)
         let okAction = UIAlertAction(title: "OK", style: .cancel) { _ in
             
         }
         alert.addAction(okAction)
         self.present(alert, animated: true, completion: nil)
-    }
+        }
+            
+    
     
     @IBAction func createButtonTapped(_ sender: Any) {
         self.saveEvent()
