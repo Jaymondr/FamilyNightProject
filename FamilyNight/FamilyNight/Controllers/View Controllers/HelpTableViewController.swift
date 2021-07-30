@@ -36,7 +36,6 @@ class HelpTableViewController: UITableViewController {
     }()
     
     fileprivate func setupTableView() {
-//        view.addSubview(tableView)
         tableView.topAnchor.constraint(equalTo: view.topAnchor, constant: 100).isActive = true
         tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16).isActive = true
         tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16).isActive = true
@@ -47,12 +46,12 @@ class HelpTableViewController: UITableViewController {
     }
     
     //MARK: - Properties
-    var selectedIndex: IndexPath = IndexPath(row: 0, section: 0)
+    var selectedIndex: IndexPath = []
 
     let data = [
-        JRDropData(title: "Overview", description: "Family Night is an easy to use app, that makes it simple to plan, attend and share an event over any platform. Once you've planned your event, hit the share button to send your event URL over multiple platforms"),
-        JRDropData(title: "Comming Soon!", description: "Soon you will be able to create goals, and check in each time you follow through with an event. This is to help you create goals and follow through with them:)"),
-        JRDropData(title: "Resources", description: "Using firebase data to create and send links to event"),
+        JRDropData(title: "Overview", description: "Family Night is an easy to use app, that makes it simple to plan, attend and share an event over any platform. Once you've planned your event, hit the share button to send your event URL over multiple platforms, or add it to your calendar."),
+        JRDropData(title: "Comming Soon!", description: "Soon you will be able to create goals, and check in each time you follow through with an event. This is to help you create goals and spend more quality time with family and friends"),
+        JRDropData(title: "Resources", description: "Using firebase data to create and send links to event. Uses the Apple calendar app to save events to users calendar"),
         JRDropData(title: "Privacy", description: "Your data is not collected by the Family Time App"),
         JRDropData(title: "Features", description: "Family Time is designed in a way that doesn't require an added social aspect. The point of family time is to create an event on an easy to use platform and send the event through a dynamic link using any social media platform you would like to use.")
     ]

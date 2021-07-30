@@ -21,9 +21,21 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Family Night" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0tq-NS-smb">
-                                <rect key="frame" x="0.0" y="320.5" width="414" height="76"/>
-                                <fontDescription key="fontDescription" name="Verdana-Bold" family="Verdana" pointSize="44"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Family" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0tq-NS-smb">
+                                <rect key="frame" x="44" y="268.5" width="326" height="90"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="90" id="tdA-VY-AGk"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="PingFangTC-Semibold" family="PingFang TC" pointSize="75"/>
+                                <color key="textColor" name="jGrayBlue"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Night" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d0r-D3-PCC">
+                                <rect key="frame" x="62" y="358.5" width="290" height="75"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="75" id="e9a-ZM-7cZ"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="PingFangTC-Semibold" family="PingFang TC" pointSize="56"/>
                                 <color key="textColor" name="jGrayBlue"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -31,14 +43,16 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="0tq-NS-smb" firstAttribute="centerX" secondItem="BU0-83-Au7" secondAttribute="centerX" id="4Ok-dQ-vbd"/>
-                            <constraint firstItem="0tq-NS-smb" firstAttribute="height" secondItem="BU0-83-Au7" secondAttribute="height" multiplier="0.085" id="ErH-od-wLb"/>
+                            <constraint firstItem="0tq-NS-smb" firstAttribute="centerX" secondItem="BU0-83-Au7" secondAttribute="centerX" id="JyR-Rl-q1z"/>
                             <constraint firstAttribute="bottom" secondItem="BU0-83-Au7" secondAttribute="bottom" id="K8P-Ng-r65"/>
-                            <constraint firstItem="0tq-NS-smb" firstAttribute="width" secondItem="BU0-83-Au7" secondAttribute="width" id="PIT-Dd-E9A"/>
+                            <constraint firstItem="d0r-D3-PCC" firstAttribute="top" secondItem="0tq-NS-smb" secondAttribute="bottom" id="MdL-Lu-rzp"/>
+                            <constraint firstItem="0tq-NS-smb" firstAttribute="width" secondItem="BU0-83-Au7" secondAttribute="width" multiplier="0.78744" id="YoB-A6-l11"/>
                             <constraint firstItem="BU0-83-Au7" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="aPC-3a-0wN"/>
+                            <constraint firstItem="0tq-NS-smb" firstAttribute="centerY" secondItem="BU0-83-Au7" secondAttribute="centerY" multiplier="0.7" id="fR6-j3-l0v"/>
                             <constraint firstItem="BU0-83-Au7" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="mka-Bn-9Iv"/>
+                            <constraint firstItem="d0r-D3-PCC" firstAttribute="centerX" secondItem="BU0-83-Au7" secondAttribute="centerX" id="sGO-kd-ww4"/>
                             <constraint firstItem="BU0-83-Au7" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="uct-z5-bby"/>
-                            <constraint firstItem="0tq-NS-smb" firstAttribute="centerY" secondItem="BU0-83-Au7" secondAttribute="centerY" multiplier="0.8" id="vlZ-gv-FmR"/>
+                            <constraint firstItem="d0r-D3-PCC" firstAttribute="width" secondItem="BU0-83-Au7" secondAttribute="width" multiplier="0.700483" id="yZK-fD-fK3"/>
                         </constraints>
                     </view>
                 </viewController>

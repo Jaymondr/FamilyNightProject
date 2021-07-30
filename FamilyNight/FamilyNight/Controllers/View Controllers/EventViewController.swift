@@ -37,16 +37,9 @@ class EventViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        EventController.shared.loadFromPersistenceStore()
-        tableView.reloadData()
         setup()
     }
-    
-    //MARK: - Actions
-    @IBAction func planButtonTapped(_ sender: Any) {
         
-    }
-    
     //MARK: - Properties
     var events = EventController.shared.events
     var event: Event?
@@ -56,7 +49,7 @@ class EventViewController: UIViewController {
     //MARK: - Functions
    private func addStyle() {
         assignbackground()
-        goalsButton.badgeColor = .systemYellow
+//        goalsButton.badgeColor = .systemYellow
         helpButton.badgeColor = CustomColors.GrayBlue
         //Plan Button
         self.planButton.setTitleColor(CustomColors.DarkBlue, for: .normal)
@@ -70,7 +63,6 @@ class EventViewController: UIViewController {
         //Subtitle
         self.subtitle.textColor = CustomColors.Gray
         view.tintColor = CustomColors.Blue
-//    self.navigationController?.tabBarController.sh
     }
     func assignbackground(){
           let background = UIImage(named: "launchScreenImage")
@@ -91,15 +83,6 @@ class EventViewController: UIViewController {
             EventController.shared.loadFromPersistenceStore()
             self.events = EventController.shared.events
             self.tableView.reloadData()
-//            EventController.shared.fetchEvents { success in
-//                if success {
-//                    print("Event Count: \(EventController.shared.events.count)")
-//                    self.events = EventController.shared.events
-//                    self.tableView.reloadData()
-//                } else {
-//                    print("Houston we have a problem!")
-//                }
-//            }
         }
     }
 }//End of class
