@@ -35,8 +35,8 @@ class PlannerViewController: UIViewController, UITextViewDelegate {
     }
     
     //MARK: - Actions
-    @IBAction func IdeaButtonTapped(_ sender: Any) {
-        var idea = Idea.init(title: randomIdea())
+    func runRandomAlert() {
+        let idea = Idea.init(title: randomIdea())
         var title = idea.title.replacingOccurrences(of: "title", with: "")
         title.removeAll() {
             value in return value == "\""
@@ -48,11 +48,19 @@ class PlannerViewController: UIViewController, UITextViewDelegate {
             value in return value == ")"
         }
         let alert = UIAlertController(title: "Idea", message: "\(title)", preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "OK", style: .cancel) { _ in
-            
+        let okAction = UIAlertAction(title: "Use", style: .cancel) { _ in
+            self.descriptionTextView.text = title
+        }
+        let nextAction = UIAlertAction(title: "Next", style: .default) { _ in
+            self.runRandomAlert()
         }
         alert.addAction(okAction)
+        alert.addAction(nextAction)
         self.present(alert, animated: true, completion: nil)
+
+    }
+    @IBAction func IdeaButtonTapped(_ sender: Any) {
+        runRandomAlert()
     }
     
     @IBAction func locationButtonTapped(_ sender: Any) {
