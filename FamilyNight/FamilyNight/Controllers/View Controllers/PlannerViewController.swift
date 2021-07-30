@@ -181,7 +181,7 @@ class PlannerViewController: UIViewController, UITextViewDelegate {
         self.saveEvent()
         if let event = self.event {
             
-            let alert = UIAlertController(title: "Create Event", message: "Would you like to add this event to your calendar, or create a link", preferredStyle: .alert)
+            let alert = UIAlertController(title: "Create Event", message: "Would you like to add this event to your calendar, or create a shareable link", preferredStyle: .alert)
             let calendarAction = UIAlertAction(title: "Calendar", style: .default) { result in
                 let successAlert = UIAlertController(title: "Event has been added to your calendar", message: nil, preferredStyle: .alert)
                 let okAction = UIAlertAction(title: "OK", style: .cancel) { _ in
