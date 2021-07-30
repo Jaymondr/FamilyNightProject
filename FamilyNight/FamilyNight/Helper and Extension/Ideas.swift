@@ -26,7 +26,7 @@ var ideas: [Idea] = [
     Idea(title: "Plant a garden"),
     Idea(title: "Visit a museum"),
     Idea(title: "Record acting out a play"),
-    Idea(title: "Buy and fly a kite"),
+    Idea(title: "Fly a kite"),
     Idea(title: "Play hide and seek in the dark"),
     Idea(title: "Go on a hike"),
     Idea(title: "Have a race"),
