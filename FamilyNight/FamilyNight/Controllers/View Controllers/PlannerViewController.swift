@@ -35,6 +35,26 @@ class PlannerViewController: UIViewController, UITextViewDelegate {
     }
     
     //MARK: - Actions
+    @IBAction func IdeaButtonTapped(_ sender: Any) {
+        var idea = Idea.init(title: randomIdea())
+        var title = idea.title.replacingOccurrences(of: "title", with: "")
+        title.removeAll() {
+            value in return value == "\""
+        }
+        title.removeAll() {
+            value in return value == "("
+        }
+        title.removeAll() {
+            value in return value == ")"
+        }
+        let alert = UIAlertController(title: "Idea", message: "\(title)", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .cancel) { _ in
+            
+        }
+        alert.addAction(okAction)
+        self.present(alert, animated: true, completion: nil)
+    }
+    
     @IBAction func locationButtonTapped(_ sender: Any) {
         
         let alertController = UIAlertController(title: "Add Location", message: nil, preferredStyle: .alert)
@@ -251,8 +271,7 @@ class PlannerViewController: UIViewController, UITextViewDelegate {
     
     let regionInMeters: Double = 1000
     let locationManager = CLLocationManager()
-    var placeholder = Idea(title: "\(placeHolderIdea)")
-    
+
     //MARK: - Functions
     func hideKeyboard() {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.hideKeyboardByTappingOutside))
@@ -392,15 +411,25 @@ class PlannerViewController: UIViewController, UITextViewDelegate {
         }
     }
     func textViewDidEndEditing(_ textView: UITextView) {
-        if textView.text.isEmpty {
-            textView.text = placeholder.title
-            textView.textColor = UIColor.lightGray
-            placeholder.title = placeholder.title
-        } else {
-            placeholder.title = textView.text
-        }
+//        var title = placeholder.title.replacingOccurrences(of: "title", with: "")
+//        title.removeAll() {
+//            value in return value == "\""
+//        }
+//        title.removeAll() {
+//            value in return value == "("
+//        }
+//        title.removeAll() {
+//            value in return value == ")"
+//        }
+//
+//        if textView.text.isEmpty {
+//            textView.text = title
+//            textView.textColor = UIColor.gray
+//            placeholder.title = title
+//        } else {
+//            placeholder.title = textView.text
+//        }
     }
-    
 }//End of class
 
 //MARK: - Extensions

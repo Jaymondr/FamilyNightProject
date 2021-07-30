@@ -7,14 +7,17 @@
 
 import Foundation
 
-struct Idea {
+class Idea {
     var title: String
+    init(title: String) {
+        self.title = title
+    }
 }
 var ideas: [Idea] = [
     Idea(title: "Go on a walk"),
     Idea(title: "Wash the car"),
     Idea(title: "Go to the zoo"),
-    Idea(title: "Have a slumber party"),
+    Idea(title: "Throw a slumber party"),
     Idea(title: "Camp in the backyard"),
     Idea(title: "Go through baby photos"),
     Idea(title: "Try a new cookie recipe"),
@@ -39,7 +42,7 @@ var ideas: [Idea] = [
     Idea(title: "Doorbell ditch nice letters to your neighbors, or friends"),
     Idea(title: "Visit a local book store"),
     Idea(title: "Say why your grateful for each other"),
-    Idea(title: "Have a lemonade stand"),
+    Idea(title: "Make a lemonade stand"),
     Idea(title: "Babysit friends or neighbors kids for free so parents can go out"),
     Idea(title: "Have a formal dinner"),
     Idea(title: "Have a garage sale"),
@@ -48,5 +51,8 @@ var ideas: [Idea] = [
   
 ]
 
-let randomIdea = Int(arc4random_uniform(UInt32(ideas.count)))
-let placeHolderIdea = ideas.remove(at: randomIdea)
+func randomIdea() -> String {
+   let randomIdea = Int(arc4random_uniform(UInt32(ideas.count)))
+   let placeHolderIdea = ideas.remove(at: randomIdea)
+   return placeHolderIdea.title
+}

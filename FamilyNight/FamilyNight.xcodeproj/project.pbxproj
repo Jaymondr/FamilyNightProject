@@ -18,7 +18,7 @@
 		67848F7E26605D0700F0DCCE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 67848F7D26605D0700F0DCCE /* GoogleService-Info.plist */; };
 		67891142266E8C6B000C9077 /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67891141266E8C6A000C9077 /* DateFormatter.swift */; };
 		67891150266EF60D000C9077 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6789114F266EF60D000C9077 /* CalendarViewController.swift */; };
-		67891153266FE784000C9077 /* EventIdeas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67891152266FE784000C9077 /* EventIdeas.swift */; };
+		67891153266FE784000C9077 /* Ideas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67891152266FE784000C9077 /* Ideas.swift */; };
 		678E28BA2646DC2A005F6F49 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 678E28B92646DC2A005F6F49 /* AppDelegate.swift */; };
 		678E28BC2646DC2A005F6F49 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 678E28BB2646DC2A005F6F49 /* SceneDelegate.swift */; };
 		678E28C12646DC2A005F6F49 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 678E28BF2646DC2A005F6F49 /* Main.storyboard */; };
@@ -165,7 +165,7 @@
 		67848F7D26605D0700F0DCCE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../../GoogleService-Info.plist"; sourceTree = "<group>"; };
 		67891141266E8C6A000C9077 /* DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
 		6789114F266EF60D000C9077 /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
-		67891152266FE784000C9077 /* EventIdeas.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventIdeas.swift; sourceTree = "<group>"; };
+		67891152266FE784000C9077 /* Ideas.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ideas.swift; sourceTree = "<group>"; };
 		67891154267007A1000C9077 /* FamilyNight.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FamilyNight.entitlements; sourceTree = "<group>"; };
 		678E28B62646DC2A005F6F49 /* FamilyNight.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FamilyNight.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		678E28B92646DC2A005F6F49 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -306,7 +306,7 @@
 			children = (
 				6780CE672656020000F6104B /* Styles */,
 				67891141266E8C6A000C9077 /* DateFormatter.swift */,
-				67891152266FE784000C9077 /* EventIdeas.swift */,
+				67891152266FE784000C9077 /* Ideas.swift */,
 				67EF6DD7269774020093FFD6 /* Persistence.swift */,
 			);
 			path = "Helper and Extension";
@@ -619,7 +619,7 @@
 				676E921526727BDF00235FDF /* HelpTableViewController.swift in Sources */,
 				67891150266EF60D000C9077 /* CalendarViewController.swift in Sources */,
 				678E28BA2646DC2A005F6F49 /* AppDelegate.swift in Sources */,
-				67891153266FE784000C9077 /* EventIdeas.swift in Sources */,
+				67891153266FE784000C9077 /* Ideas.swift in Sources */,
 				67EF6DD8269774020093FFD6 /* Persistence.swift in Sources */,
 				676E92182672811B00235FDF /* JRDropCell.swift in Sources */,
 				67891142266E8C6B000C9077 /* DateFormatter.swift in Sources */,
